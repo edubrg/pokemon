@@ -1,0 +1,25 @@
+<section *ngIf="!loading">
+	<div class="title">
+		<img src="assets/icon-poke-red.svg" alt="pokeball red">
+		<h4>{{dadosLista.count}} Pokémons</h4>
+	</div>
+
+	<div class="conteudo">
+		<div class="card" *ngFor="let pokemons of dadosLista.results">
+			<div class="imagem">
+				<span class="type-pokemon-background-{{retornaDadosPokemonHtml(pokemons.name).types[0].type.name}}"></span>
+				<img src="{{retornaDadosPokemonHtml(pokemons.name).sprites.other.dream_world.front_default}}"
+					alt="Primeape">
+			</div>
+
+			<div class="dados">
+				<p>#057</p>
+
+				<div>
+					<h4>{{pokemons.name}}</h4>
+					<img src="assets/tipos-pokemon-icon/{{retornaDadosPokemonHtml(pokemons.name).types[0].type.name}}.svg" alt="fighting">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

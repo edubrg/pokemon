@@ -1,0 +1,9 @@
+<a class="item">
+	<img src="/assets/tipos-pokemon-icon/icon-all.svg" alt="pokeball icone">
+	<p class="type-pokemon-all">Todos</p>
+</a>
+
+<a *ngFor="let categoria of dados.results" class="item">
+	<img src="{{ categoria.urlImg }}" alt="{{categoria.name}} icone">
+	<p class="type-pokemon-{{categoria.name}}">{{categoria.name}}</p>
+</a>

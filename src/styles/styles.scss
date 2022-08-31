@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import './_reset.scss';
+@import './_base.scss';
+@import './_component.scss';
+@import './_layout.scss';
+
+body {
+    font: 16px "Inter", sans-serif;
+    font-weight: 400;
+    position: relative;
+}

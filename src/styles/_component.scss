@@ -1,0 +1,110 @@
+@each $name, $rgb, $color in $backgrounds-colors-type-pokemons{
+	.type-pokemon-background-#{$name} {
+		background-color: $rgb;
+	}
+
+	.type-pokemon-color-#{$name} {
+		color: $color;
+	}
+}
+
+.container {
+	@include toRem(max-width, 1221);
+	margin: 0 auto;
+	padding: 0 0.9375rem;
+}
+
+.input {
+	@include flex(space-between, center);
+	@include toRem(max-width, 379.008);
+	background: $base-color;
+	width: 100%;
+	padding: 0.4375rem 0.4375rem 0.4375rem 1.0625rem;
+	border-radius: 50px;
+
+	input {
+		@include title($font-color-input, 15, 500);
+		width: 100%;
+		border: 0;
+	}
+
+	input::placeholder {
+		@include title($font-color-input, 15, 500);
+	}
+
+	.icon {
+		@include flex(center, center);
+		@include toRem(width, 42);
+		@include toRem(height, 42);
+		opacity: 0.5;
+		border-radius: 50px;
+		background-color: $blue-terciario;
+	}
+}
+
+.card {
+	@include toRem(height, 304);
+	@include toRem(border-radius, 12);
+	background: $base-color;
+	box-shadow: 0px 10px 51px -5px rgb(183 189 193 / 30%);
+
+	.imagem {
+		@include toRem(width, 200);
+		@include toRem(height, 200);
+		@include flex(center, center);
+		text-align: center;
+		margin: 0.875rem auto 0.875rem;
+		position: relative;
+		max-width: 100%;
+
+		span {
+			width: 80%;
+			height: 80%;
+			border-radius: 100%;
+			position: absolute;
+			left: 50%;
+			transform: translate(-50%, 0);
+			z-index: 1;
+		}
+
+		img {
+			max-width: 55%;
+			max-height: 200px;
+			position: relative;
+			z-index: 2;
+		}
+	}
+
+	.dados {
+		padding: 0 1.75rem;
+		p {
+			@include toRem(font-size, 13);
+			color: $font-color;
+		}
+
+		> div {
+			@include flex(space-between, center);
+			@include toRem(margin-top, 6);
+
+			h4 {
+				@include toRem(font-size, 18);
+				color: $font-black;
+				font-weight: 600;
+				font-family: "Montserrat", sans-serif;
+			}
+		}
+	}
+}
+
+.banner-red {
+	background: url("../assets/bg-red.svg") no-repeat center center;
+	background-size: cover;
+	transition: background 0.5s;
+}
+
+.banner-blue {
+	background: url("../assets/bg-blue.svg") no-repeat center center;
+	background-size: cover;
+	transition: background 0.5s;
+}
+

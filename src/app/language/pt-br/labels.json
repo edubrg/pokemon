@@ -1,0 +1,22 @@
+{
+	"typePokemon": {
+		"normal": "normal",
+		"fighting": "lutador",
+		"flying": "vôo",
+		"poison": "tóxico",
+		"ground": "terra",
+		"rock": "pedra",
+		"bug": "inseto",
+		"ghost": "fantasma",
+		"steel": "metal",
+		"fire": "fogo",
+		"water": "água",
+		"grass": "planta",
+		"eletric": "elétrico",
+		"psychic": "psíquico",
+		"ice": "gelo",
+		"dragon": "dragão",
+		"dark": "sombra",
+		"fairy": "fada"
+	}
+}

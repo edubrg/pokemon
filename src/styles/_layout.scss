@@ -1,0 +1,302 @@
+#banner {
+	@include toRem(height, 706);
+	max-width: 100vw;
+	position: relative;
+
+	.descricao {
+		@include position(relative, 140px);
+		color: $font-white;
+		text-align: center;
+
+		h6 {
+			@include toRem(font-size, 15);
+			background-color: $base-color;
+			padding: 7px 10px;
+			border-radius: 50px;
+			max-width: fit-content;
+			margin: 0 auto;
+			align-content: center;
+
+			span {
+				padding: 3px;
+				border-radius: 30px;
+			}
+		}
+
+		h1 {
+			@include title(white, 64);
+			margin: 25px 0 20px;
+
+			&.title-blue {
+				@include position(absolute, 34px, $left: 50%);
+				transform: translate(-50%, 0);
+			}
+		}
+
+		p {
+			@include toRem(font-size, 18);
+			font-weight: 500;
+		}
+
+		.pokeballs {
+			@include position(relative, 0, $zIndex: 1);
+			animation-name: flutuar;
+			animation-direction: normal;
+			animation-duration: 4s;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease;
+			animation-direction: alternate;
+
+			@keyframes flutuar {
+				0% {
+					transform: translate(0, 90px);
+				}
+				100% {
+					transform: translate(0, 70px);
+				}
+			}
+
+			img {
+				margin: 0 auto;
+				display: block;
+			}
+
+			.pokeball-blue {
+				position: absolute;
+				@include position(absolute, 0, $left: 50.7%);
+				transform: translate(-50%, 0);
+			}
+		}
+	}
+
+	.explorar {
+		@include position(absolute, $bottom: 45px);
+		@include toRem(font-size, 13);
+		@include flex($flexDirection: column, $alignItems: center);
+
+		p {
+			transform: rotate(270deg);
+			color: $font-white;
+		}
+
+		div {
+			width: 40px;
+			height: 40px;
+			border-radius: 50px;
+			margin-top: 50px;
+			@include flex($alignItems: center, $justifyContent: center);
+			img {
+				width: fit-content;
+			}
+		}
+	}
+
+	.paginacao {
+		@include position(absolute, $bottom: 50px, $right: 50px);
+		display: flex;
+		span {
+			width: 7px;
+			height: 7px;
+			background: white;
+			border-radius: 10px;
+
+			& + span {
+				margin-left: 5px;
+			}
+		}
+	}
+
+	&.banner-red {
+		.descricao {
+			h6 {
+				color: $red-secundario;
+				span {
+					background-color: $red-rgb015;
+				}
+			}
+
+			h1 {
+				&.title-red {
+					opacity: 1;
+					transition: 0.5s;
+				}
+
+				&.title-blue {
+					opacity: 0;
+					transition: 0.5s;
+				}
+			}
+
+			.pokeballs {
+				.pokeball-red {
+					opacity: 1;
+					transition: 0.5s;
+				}
+				.pokeball-blue {
+					opacity: 0;
+					transition: 0.5s;
+				}
+			}
+		}
+
+		.explorar {
+			div {
+				background-color: $red-secundario;
+			}
+		}
+
+		.paginacao {
+			span {
+				&.select-red {
+					opacity: 1;
+					transition: 0.3s;
+				}
+
+				&.select-blue {
+					opacity: 0.5;
+					transition: 0.3s;
+				}
+			}
+		}
+	}
+
+	&.banner-blue {
+		.descricao {
+			h6 {
+				color: $blue-secundario;
+				span {
+					background-color: $blue-secundario015;
+				}
+			}
+
+			h1 {
+				&.title-red {
+					opacity: 0;
+					transition: 0.5s;
+				}
+
+				&.title-blue {
+					opacity: 1;
+					transition: 0.5s;
+				}
+			}
+
+			.pokeballs {
+				.pokeball-red {
+					opacity: 0;
+					transition: 0.5s;
+				}
+				.pokeball-blue {
+					opacity: 1;
+					transition: 0.5s;
+				}
+			}
+		}
+		.explorar {
+			div {
+				background: $blue-background-rgb03;
+			}
+		}
+		.paginacao {
+			span {
+				&.select-red {
+					opacity: 0.5;
+					transition: 0.3s;
+				}
+
+				&.select-blue {
+					opacity: 1;
+					transition: 0.3s;
+				}
+			}
+		}
+	}
+}
+
+.search {
+	background: $grey;
+	padding: 100px 0;
+
+	> div {
+		@include flex($justifyContent: space-between, $alignItems: center, $flexWrap: nowrap);
+		position: relative;
+		z-index: 2;
+
+		h2 {
+			@include title($font-black);
+			@include toRem(max-width, 265);
+		}
+	}
+}
+
+.conteudo-index {
+	display: flex;
+
+	.navegacao-lateral {
+		@include toRem(padding-top, 70);
+		@include toRem(padding-bottom, 100);
+		@include toRem(max-width, 239);
+		width: 100%;
+		border-right: 0.5px solid rgb(128, 128, 128, 0.1);
+
+		.item {
+			@include flex($alignItems: center);
+			filter: grayscale(100%);
+			width: 100%;
+			padding: 1em 0;
+			opacity: 0.6;
+			transition: filter opacity 0.5s;
+			cursor: pointer;
+
+			&.item:first-child {
+				padding-top: 0;
+			}
+
+			img {
+				@include toRem(max-width, 20);
+				@include toRem(max-height, 20);
+				@include toRem(margin-right, 20);
+				@include toRem(height, 20);
+				width: 100%;
+			}
+
+			p {
+				@include toRem(font-size, 15);
+				font-weight: 500;
+			}
+
+			&:hover {
+				filter: grayscale(0);
+				opacity: 1;
+				transition: 0.5s;
+			}
+		}
+	}
+
+	.conteudo-pesquisa {
+		width: 100%;
+		section {
+			@include toRem(padding-top, 70);
+			@include toRem(padding-bottom, 100);
+			@include toRem(padding-left, 75);
+	
+			.title {
+				@include flex($alignItems: center);
+				@include title($font-color-subtitle, 18, 600);
+				@include toRem(margin-bottom, 75);
+				font-family: "Montserrat", sans-serif;
+	
+				img {
+					@include toRem(margin-right, 18);
+				}
+			}
+	
+			.conteudo {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				grid-gap: 3.2rem;
+			}
+		}
+		
+	}
+}
