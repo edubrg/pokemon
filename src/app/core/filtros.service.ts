@@ -6,13 +6,22 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class FiltrosService {
 
-	private filtros = new BehaviorSubject<string>(undefined!);
+	private filtroTipo = new BehaviorSubject<string>(undefined!);
+	private filtroPokemon = new BehaviorSubject<string>(undefined!);
 
-	public getFiltros(): Observable<string>{
-		return this.filtros.asObservable();
+	public getFiltroTipo(): Observable<string>{
+		return this.filtroTipo.asObservable();
 	}
 
-	public setFiltros(value: string): void {
-		this.filtros.next(value);
+	public setFiltroTipo(value: string): void {
+		this.filtroTipo.next(value);
+	}
+
+	public getFiltroPokemon(): Observable<string>{
+		return this.filtroPokemon.asObservable();
+	}
+
+	public setFiltroPokemon(pokemon: string): void {
+		this.filtroPokemon.next(pokemon);
 	}
 }

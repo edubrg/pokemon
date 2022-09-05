@@ -13,7 +13,7 @@ export class ItemsNavComponent {
 	constructor(private filtrosService: FiltrosService) { }
 
 	public filtrarTipoPokemon(value: string, index: number): void {
-		this.filtrosService.setFiltros(value);
+		this.filtrosService.setFiltroTipo(value);
 		this.selecionado = index;
 	}
 }

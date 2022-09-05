@@ -13,6 +13,7 @@ import { ChangeBannerClass } from './model/class/changeBannerClass';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './common/loading/loading.component';
 import { TiposPokemonService } from './core/tiposPokemonService.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -30,6 +31,8 @@ import { TiposPokemonService } from './core/tiposPokemonService.service';
 		BrowserModule,
 		AppRoutingModule,
 		HttpClientModule,
+		ReactiveFormsModule,
+		FormsModule
 	],
 	providers: [
 		ChangeBannerClass,
