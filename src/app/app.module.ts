@@ -1,4 +1,3 @@
-import { TiposPokemonService } from './core/tiposPokemonService.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +11,8 @@ import { MenuPrincipalComponent } from './menu-principal/menu-principal.componen
 import { FooterComponent } from './footer/footer.component';
 import { ChangeBannerClass } from './model/class/changeBannerClass';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './common/loading/loading.component';
+import { TiposPokemonService } from './core/tiposPokemonService.service';
 
 @NgModule({
 	declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 		NavegacaoLateralComponent,
 		ConteudoPesquisaComponent,
 		ItemsNavComponent,
-		FooterComponent
+		FooterComponent,
+		LoadingComponent
 	],
 	imports: [
 		BrowserModule,

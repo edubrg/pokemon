@@ -1,4 +1,4 @@
-@each $name, $rgb, $color in $backgrounds-colors-type-pokemons{
+@each $name, $rgb, $color in $backgrounds-colors-type-pokemons {
 	.type-pokemon-background-#{$name} {
 		background-color: $rgb;
 	}
@@ -108,3 +108,12 @@
 	transition: background 0.5s;
 }
 
+.loading {
+	@include position(relative, $left: 50%, $top: 150px);
+	transform: translate(-50%);
+	max-width: 500px;
+
+	img {
+		width: 100%;
+	}
+}

@@ -1,16 +1,19 @@
-import { ItensNavegacaoLateralInterface } from './../../model/interface/itensNavegacaoLateralInterface';
-import { Component, Input, OnInit } from '@angular/core';
-import { TiposPokemonResponseInterface } from 'src/app/model/interface/tiposPokemonResponse';
+import { FiltrosService } from './../../../core/filtros.service';
+import { Component, Input } from '@angular/core';
+import { ListaPokemonsResponseInterface } from 'src/app/model/interface/listaPokemonsResponseInterface';
 
 @Component({
 	selector: 'app-items-nav',
 	templateUrl: './items-nav.component.html'
 })
-export class ItemsNavComponent implements OnInit {
-	@Input() public dados!: TiposPokemonResponseInterface;
+export class ItemsNavComponent {
+	public selecionado: number = -1;
+	@Input() public dados!: ListaPokemonsResponseInterface;
 
-	constructor() { }
+	constructor(private filtrosService: FiltrosService) { }
 
-	ngOnInit() {
+	public filtrarTipoPokemon(value: string, index: number): void {
+		this.filtrosService.setFiltros(value);
+		this.selecionado = index;
 	}
 }

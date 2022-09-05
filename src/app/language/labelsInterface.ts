@@ -12,7 +12,7 @@ export interface LabelsInterface {
 		fire: string,
 		water: string,
 		grass: string,
-		eletric: string,
+		electric: string,
 		psychic: string,
 		ice: string,
 		dragon: string,
