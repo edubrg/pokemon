@@ -8,7 +8,7 @@ import { ListaPokemonsResponseInterface } from '../model/interface/listaPokemons
 	providedIn: 'root'
 })
 export class ListarPokemonsService {
-	private url: string = environment.urlPokemon + 'pokemon?limit=9&offset=0'
+	private url: string = environment.urlPokemon + 'pokemon'
 
 	constructor(private http: HttpClient) { }
 

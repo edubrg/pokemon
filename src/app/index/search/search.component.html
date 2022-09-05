@@ -1,11 +1,11 @@
 <section class="search">
 	<div class="container">
 		<h2>Ache seu Pokémon</h2>
-		<div class="input">
-			<input type="text" placeholder="Pesquise por nome ou id">
-			<div class="icon">
+		<form class="input" [formGroup]="form">
+			<input type="text" placeholder="Pesquise por nome ou id" formControlName="pesquisa">
+			<div class="icon" (click)="pesquisar()">
 				<img src="assets/lupa.svg" alt="lupa pesquisar">
 			</div>
-		</div>
+		</form>
 	</div>
 </section>
