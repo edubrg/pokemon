@@ -252,6 +252,12 @@
 				padding-top: 0;
 			}
 
+			&.bold-item {
+				transition: filter opacity 0.5s;
+				opacity: 1;
+				filter: grayscale(0);
+			}
+
 			img {
 				@include toRem(max-width, 20);
 				@include toRem(max-height, 20);
@@ -275,28 +281,28 @@
 
 	.conteudo-pesquisa {
 		width: 100%;
+		position: relative;
 		section {
 			@include toRem(padding-top, 70);
 			@include toRem(padding-bottom, 100);
 			@include toRem(padding-left, 75);
-	
+
 			.title {
 				@include flex($alignItems: center);
 				@include title($font-color-subtitle, 18, 600);
 				@include toRem(margin-bottom, 75);
 				font-family: "Montserrat", sans-serif;
-	
+
 				img {
 					@include toRem(margin-right, 18);
 				}
 			}
-	
+
 			.conteudo {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
 				grid-gap: 3.2rem;
 			}
 		}
-		
 	}
 }

@@ -19,6 +19,9 @@ export interface ImagensSpritesPokemonInterface {
 				front_shiny: string
 				front_shiny_female: string
 			},
+			"official-artwork": {
+				front_default: string
+			}
 		},
 	},
 } 

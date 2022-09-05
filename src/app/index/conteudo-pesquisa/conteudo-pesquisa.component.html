@@ -1,25 +1,28 @@
 <section *ngIf="!loading">
 	<div class="title">
 		<img src="assets/icon-poke-red.svg" alt="pokeball red">
-		<h4>{{dadosLista.count}} Pokémons</h4>
+		<h4>{{dadosLista.count ? dadosLista.count : dadosPokemon.length}} Pokémons</h4>
 	</div>
 
 	<div class="conteudo">
-		<div class="card" *ngFor="let pokemons of dadosLista.results">
-			<div class="imagem">
-				<span class="type-pokemon-background-{{retornaDadosPokemonHtml(pokemons.name).types[0].type.name}}"></span>
-				<img src="{{retornaDadosPokemonHtml(pokemons.name).sprites.other.dream_world.front_default}}"
-					alt="Primeape">
-			</div>
+		<div class="card" *ngFor="let pokemon of dadosPokemon; index as i">
+			<div *ngIf="pokemon.hasOwnProperty('types')">
+				<div class="imagem">
+					<span class="type-pokemon-background-{{pokemon.types[0].type.name}}"></span>
+					<img src="{{trataImagens(pokemon)}}" alt="{{pokemon.name}}">
+				</div>
 
-			<div class="dados">
-				<p>#057</p>
+				<div class="dados">
+					<p>#{{pokemon.id}}</p>
 
-				<div>
-					<h4>{{pokemons.name}}</h4>
-					<img src="assets/tipos-pokemon-icon/{{retornaDadosPokemonHtml(pokemons.name).types[0].type.name}}.svg" alt="fighting">
+					<div>
+						<h4>{{pokemon.name }}</h4>
+						<img src="assets/tipos-pokemon-icon/{{pokemon.types[0].type.name}}.svg" alt="{{pokemon.types[0].type.name}}">
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+<app-loading [loading]="loading"></app-loading>
