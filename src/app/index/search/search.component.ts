@@ -22,7 +22,7 @@ export class SearchComponent {
 
 	public pesquisar(): void {
 		if(this.form.get('pesquisa')?.value){
-			this.filtrosService.setFiltroPokemon(this.form.get('pesquisa')?.value);
+			this.filtrosService.setFiltroNomeOuIdPokemon(this.form.get('pesquisa')?.value);
 		}
 	}
 }
