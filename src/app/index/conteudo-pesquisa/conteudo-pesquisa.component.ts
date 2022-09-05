@@ -1,7 +1,6 @@
 import { FiltrosService } from './../../core/filtros.service';
 import { PokemonInterface } from './../../model/interface/pokemon/pokemonInterface';
 import { PokemonService } from './../../core/pokemonService.service';
-import { ListarPokemonsService } from './../../core/listarPokemonsService.service';
 import { Component, OnInit } from '@angular/core';
 import { ListaPokemonsResponseInterface, PokemonListaPokemonsInterface, ResultsListaPokemonsInterface } from 'src/app/model/interface/listaPokemonsResponseInterface';
 import { take } from 'rxjs';
@@ -17,10 +16,9 @@ export class ConteudoPesquisaComponent implements OnInit {
 	public dadosTela: PokemonInterface[] = [];
 	public loading: boolean = false;
 
-	private offset: number = 0;
+	private offset: number = 9;
 
 	constructor(
-		private listarPokemonsService: ListarPokemonsService,
 		private pokemonService: PokemonService,
 		private filtrosService: FiltrosService,
 		private tiposPokemonService: TiposPokemonService
@@ -28,11 +26,11 @@ export class ConteudoPesquisaComponent implements OnInit {
 
 	ngOnInit() {
 		this.getListaPokemon();
-		this.getFiltrar();
+		this.getFiltrarTipoPokemon();
 	}
 	
 	private getListaPokemon(): void {
-		this.listarPokemonsService.get(10, this.offset).pipe(take(1)).subscribe({
+		this.pokemonService.getListaPokemon(9, this.offset).pipe(take(1)).subscribe({
 			next: (res: ListaPokemonsResponseInterface) => {
 				this.dadosLista = res;
 			},
@@ -45,23 +43,21 @@ export class ConteudoPesquisaComponent implements OnInit {
 
 	private getDadosPokemons(): void {
 		this.dadosLista.results.forEach((pokemon: ResultsListaPokemonsInterface, index: number) => {
-			this.pokemonService.get(pokemon.name).pipe(take(1)).subscribe({
+			this.pokemonService.getPokemon(pokemon.name).pipe(take(1)).subscribe({
 				next: (pok: PokemonInterface) => {
 					this.dadosPokemon.push(pok);
 				},
 				complete: () => {
 					if (this.dadosLista.results.length === index + 1) {
 						this.loading = false;
-						console.log(this.dadosPokemon);
-
 					}
 				}
 			})
 		});
 	}
 
-	private getFiltrar(): void {
-		this.filtrosService.getFiltros().subscribe({
+	private getFiltrarTipoPokemon(): void {
+		this.filtrosService.getFiltroTipo().subscribe({
 			next: (tipo: string) => {
 				this.dadosPokemon = [];
 				this.loading = true;
@@ -92,7 +88,7 @@ export class ConteudoPesquisaComponent implements OnInit {
 		});
 	}
 
-	async trataDadosTipoPokemonLista(): Promise<any> {
+	private async trataDadosTipoPokemonLista(): Promise<void> {
 		this.dadosLista.results = [];
 		this.dadosLista.results = await Promise.all(this.dadosLista.pokemon?.map((res: PokemonListaPokemonsInterface) => {
 			return res.pokemon;
