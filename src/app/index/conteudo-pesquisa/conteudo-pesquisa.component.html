@@ -26,3 +26,5 @@
 </section>
 
 <app-loading [loading]="loading"></app-loading>
+
+<app-erro-filtro *ngIf="!loading && dadosPokemon.length === 0"  (recarregar)="erroFiltroRecarregar($event)"></app-erro-filtro>
