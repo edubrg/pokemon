@@ -46,7 +46,6 @@ export class ConteudoPesquisaComponent implements OnInit {
 		this.dadosLista.results.forEach((pokemon: ResultsListaPokemonsInterface, index: number) => {
 			this.pokemonService.getPokemon(pokemon.name).pipe(take(1)).subscribe({
 				next: (pok: PokemonInterface) => {
-					console.log('aqui')
 					this.dadosPokemon.push(pok);
 				},
 				complete: () => {
@@ -109,20 +108,25 @@ export class ConteudoPesquisaComponent implements OnInit {
 	}
 
 	private trataDadosNomeOuIdPokemonSearch(nomeOuId: string): void {
-		this.loading = true;
-		this.dadosPokemon = [];
-		this.dadosLista.results = [];
-		const nomesPokemon = nomeOuId.split(/[ ,]+/);
-		nomesPokemon.forEach((nome: string) => {
-			this.dadosLista.results.push(
-				{
-					name: nome.toLowerCase(),
-					url: '',
-				}
-			)
-			this.dadosLista.count = nomesPokemon.length
-		});
-		this.getDadosPokemons();
+		if(nomeOuId && nomeOuId !== ''){
+			this.loading = true;
+			this.dadosPokemon = [];
+			this.dadosLista.results = [];
+			const nomesPokemon = nomeOuId.split(/[ ,]+/);
+			nomesPokemon.forEach((nome: string) => {
+				this.dadosLista.results.push(
+					{
+						name: nome.toLowerCase(),
+						url: '',
+					}
+				)
+				this.dadosLista.count = nomesPokemon.length
+			});
+			this.getDadosPokemons();
+		}else {
+			this.getListaPokemon();
+		}
+		
 	}
 
 	public retornaDadosPokemonHtml(nome: string): void {

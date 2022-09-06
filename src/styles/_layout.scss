@@ -10,6 +10,7 @@
 
 		h6 {
 			@include toRem(font-size, 15);
+			font-weight: 600;
 			background-color: $base-color;
 			padding: 7px 10px;
 			border-radius: 50px;
@@ -239,14 +240,21 @@
 			@include flex(space-between, center);
 			@include toRem(max-width, 379.008);
 			background: $base-color;
-			width: 100%;
+			width: 23.6875rem;
 			padding: 0.4375rem 0.4375rem 0.4375rem 1.0625rem;
 			border-radius: 50px;
 
 			&.valid {
 				.icon {
-					opacity: 1;
-					transition: 1s;
+					opacity: 0.9;
+					border: 1px solid #e1e9ef;
+					transition: opacity 1s;
+
+					&:hover {
+						background-color: rgba(158, 185, 225, 0.3);
+						opacity: 1;
+						transition: 1s;
+					}
 				}
 			}
 
@@ -263,11 +271,13 @@
 			.icon {
 				@include flex(center, center);
 				@include toRem(width, 42);
-				@include toRem(height, 42);
+				@include toRem(height, 38);
+				cursor: pointer;
 				opacity: 0.4;
 				transition: opacity 0.7s;
-				border-radius: 50px;
+				border-radius: 100%;
 				background-color: $blue-terciario;
+				border: 1px solid $blue-terciario;
 			}
 		}
 
@@ -291,6 +301,7 @@
 				width: 20px;
 				height: 20px;
 				opacity: 0.6;
+				transition: opacity 1s;
 				cursor: pointer;
 			}
 
