@@ -8,11 +8,13 @@ import { ListaPokemonsResponseInterface } from 'src/app/model/interface/listaPok
 })
 export class ItemsNavComponent {
 	public selecionado: number = -1;
+	@Input() filtroInputAtivado: boolean = false;
 	@Input() public dados!: ListaPokemonsResponseInterface;
 
 	constructor(private filtrosService: FiltrosService) { }
 
 	public filtrarTipoPokemon(value: string, index: number): void {
+		this.filtroInputAtivado = false;
 		this.filtrosService.setFiltroTipo(value);
 		this.selecionado = index;
 	}

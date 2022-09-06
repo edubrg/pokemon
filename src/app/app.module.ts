@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChangeBannerClass } from './model/class/changeBannerClass';
 import { AppComponent } from './app.component';
 import { ConteudoPesquisaComponent } from './index/conteudo-pesquisa/conteudo-pesquisa.component';
 import { IndexComponent } from './index/index.component';
@@ -9,11 +12,9 @@ import { NavegacaoLateralComponent } from './index/navegacao-lateral/navegacao-l
 import { SearchComponent } from './index/search/search.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { FooterComponent } from './footer/footer.component';
-import { ChangeBannerClass } from './model/class/changeBannerClass';
-import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './common/loading/loading.component';
 import { TiposPokemonService } from './core/tiposPokemonService.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErroFiltroComponent } from './common/erro-filtro/erro-filtro.component';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 		ConteudoPesquisaComponent,
 		ItemsNavComponent,
 		FooterComponent,
-		LoadingComponent
+		LoadingComponent,
+		ErroFiltroComponent
 	],
 	imports: [
 		BrowserModule,

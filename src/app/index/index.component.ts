@@ -8,6 +8,7 @@ import { BannerAtualEnum } from '../model/enum/bannerAtualEnum';
 })
 export class IndexComponent implements OnInit {
 	private bannerAtual: BannerAtualEnum = BannerAtualEnum.red;
+	public filtroNomeOuId: boolean = false;
 
 	constructor(
 		private changeBanner: ChangeBannerClass
@@ -15,5 +16,9 @@ export class IndexComponent implements OnInit {
 
 	ngOnInit() {
 		setInterval(() => (this.bannerAtual = this.changeBanner.change('banner', this.bannerAtual)), 5000)
+	}
+
+	public filtroNomeOuIdAtivado(event: boolean): void {
+		this.filtroNomeOuId = event;
 	}
 }

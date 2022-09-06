@@ -1,5 +1,5 @@
 import { TiposPokemonService } from './../../core/tiposPokemonService.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LabelsInterface } from 'src/app/language/labelsInterface';
 import Labels from '../../language/pt-br/labels.json';
 import { ListaPokemonsResponseInterface } from 'src/app/model/interface/listaPokemonsResponseInterface';
@@ -9,6 +9,8 @@ import { ListaPokemonsResponseInterface } from 'src/app/model/interface/listaPok
 	templateUrl: './navegacao-lateral.component.html',
 })
 export class NavegacaoLateralComponent implements OnInit {
+	@Input() filtroLateralAtivado: boolean = true;
+
 	public labelsInterface: LabelsInterface = Labels
 	public tiposPokemon!: ListaPokemonsResponseInterface;
 	constructor(private tiposPokemonService: TiposPokemonService) { }
@@ -16,7 +18,7 @@ export class NavegacaoLateralComponent implements OnInit {
 	ngOnInit() {
 		this.getTipoPokemon();
 	}
-
+	
 	private getTipoPokemon(): void {
 		this.tiposPokemonService.getTiposPokemon().subscribe({
 			next: (res: ListaPokemonsResponseInterface) => {

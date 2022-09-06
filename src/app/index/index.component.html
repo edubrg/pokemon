@@ -30,8 +30,8 @@
 
 <section class="container">
 	<div class="conteudo-index">
-		<app-navegacao-lateral class="navegacao-lateral"></app-navegacao-lateral>
-		<app-conteudo-pesquisa class="conteudo-pesquisa"></app-conteudo-pesquisa>
+		<app-navegacao-lateral class="navegacao-lateral" [filtroLateralAtivado]="filtroNomeOuId"></app-navegacao-lateral>
+		<app-conteudo-pesquisa class="conteudo-pesquisa"  (filtroNomeOuIdAtivado)="filtroNomeOuIdAtivado($event)"></app-conteudo-pesquisa>
 	</div>
 </section>
 

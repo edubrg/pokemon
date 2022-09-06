@@ -1,22 +1,25 @@
 import { FiltrosService } from './../../core/filtros.service';
 import { PokemonInterface } from './../../model/interface/pokemon/pokemonInterface';
 import { PokemonService } from './../../core/pokemonService.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { ListaPokemonsResponseInterface, PokemonListaPokemonsInterface, ResultsListaPokemonsInterface } from 'src/app/model/interface/listaPokemonsResponseInterface';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { TiposPokemonService } from 'src/app/core/tiposPokemonService.service';
 
 @Component({
 	selector: 'app-conteudo-pesquisa',
 	templateUrl: './conteudo-pesquisa.component.html'
 })
-export class ConteudoPesquisaComponent implements OnInit {
+export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
+	@Output() filtroNomeOuIdAtivado = new EventEmitter<boolean>();
+
 	public dadosLista!: ListaPokemonsResponseInterface;
 	public dadosPokemon: Array<PokemonInterface> = [];
 	public dadosTela: PokemonInterface[] = [];
 	public loading: boolean = false;
 
 	private offset: number = 9;
+	private unsubscribers: Subscription[] = [];
 
 	constructor(
 		private pokemonService: PokemonService,
@@ -30,7 +33,12 @@ export class ConteudoPesquisaComponent implements OnInit {
 		this.getNomeOuIdPokemonSearch();
 	}
 
+	ngOnDestroy(): void {
+		this.unsubscribers.forEach(subs => subs.unsubscribe);
+	}
+
 	private getListaPokemon(): void {
+		this.loading = true;
 		this.pokemonService.getListaPokemon(9, this.offset).pipe(take(1)).subscribe({
 			next: (res: ListaPokemonsResponseInterface) => {
 				this.dadosLista = res;
@@ -48,6 +56,10 @@ export class ConteudoPesquisaComponent implements OnInit {
 				next: (pok: PokemonInterface) => {
 					this.dadosPokemon.push(pok);
 				},
+				error: () => {
+					this.dadosLista.count = 0;
+					this.loading = false;
+				},
 				complete: () => {
 					if (this.dadosLista.results.length === index + 1) {
 						this.loading = false;
@@ -58,13 +70,13 @@ export class ConteudoPesquisaComponent implements OnInit {
 	}
 
 	private getFiltrarTipoPokemon(): void {
-		this.filtrosService.getFiltroTipo().subscribe({
+		this.unsubscribers.push(this.filtrosService.getFiltroTipo().subscribe({
 			next: (tipo: string) => {
 				this.dadosPokemon = [];
 				this.loading = true;
 				this.verificaTipoDoFiltro(tipo);
 			}
-		})
+		}));
 	}
 
 	private verificaTipoDoFiltro(tipo: string): void {
@@ -98,17 +110,18 @@ export class ConteudoPesquisaComponent implements OnInit {
 	}
 
 	private getNomeOuIdPokemonSearch(): void {
-		this.filtrosService.getFiltroNomeOuIdPokemon().subscribe({
+	    this.unsubscribers.push(this.filtrosService.getFiltroNomeOuIdPokemon().subscribe({
 			next: (nomeOuId: string) => {
 				if (nomeOuId) {
+					this.filtroNomeOuIdAtivado.emit(true);
 					this.trataDadosNomeOuIdPokemonSearch(nomeOuId);
 				}
 			}
-		})
+		}));
 	}
 
 	private trataDadosNomeOuIdPokemonSearch(nomeOuId: string): void {
-		if(nomeOuId && nomeOuId !== ''){
+		if (nomeOuId && nomeOuId !== '') {
 			this.loading = true;
 			this.dadosPokemon = [];
 			this.dadosLista.results = [];
@@ -123,10 +136,10 @@ export class ConteudoPesquisaComponent implements OnInit {
 				this.dadosLista.count = nomesPokemon.length
 			});
 			this.getDadosPokemons();
-		}else {
+		} else {
 			this.getListaPokemon();
 		}
-		
+
 	}
 
 	public retornaDadosPokemonHtml(nome: string): void {
@@ -142,5 +155,10 @@ export class ConteudoPesquisaComponent implements OnInit {
 		} else {
 			return 'assets/pokeball2.png';
 		}
+	}
+
+	public erroFiltroRecarregar(event: boolean) {
+		event && this.getListaPokemon();
+		this.filtrosService.setFiltroNomeOuIdPokemon(undefined!);
 	}
 }
