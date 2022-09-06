@@ -1,6 +1,6 @@
 import { FiltrosService } from './../../core/filtros.service';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'app-search',
@@ -16,13 +16,17 @@ export class SearchComponent {
 
 	private criaFormulario(): FormGroup {
 		return this.fb.group({
-			pesquisa: null
+			pesquisa: [null, Validators.required]
 		})
 	}
 
 	public pesquisar(): void {
-		if(this.form.get('pesquisa')?.value){
-			this.filtrosService.setFiltroPokemon(this.form.get('pesquisa')?.value);
-		}
+		this.filtrosService.setFiltroNomeOuIdPokemon(this.form.get('pesquisa')?.value);
+	}
+
+	public clickInformacaoAdicional(): void {
+		this.form.patchValue({
+			pesquisa: 'Pikachu, Charizard, 18'
+		})
 	}
 }

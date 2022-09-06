@@ -14,34 +14,6 @@
 	padding: 0 0.9375rem;
 }
 
-.input {
-	@include flex(space-between, center);
-	@include toRem(max-width, 379.008);
-	background: $base-color;
-	width: 100%;
-	padding: 0.4375rem 0.4375rem 0.4375rem 1.0625rem;
-	border-radius: 50px;
-
-	input {
-		@include title($font-color-input, 15, 500);
-		width: 100%;
-		border: 0;
-	}
-
-	input::placeholder {
-		@include title($font-color-input, 15, 500);
-	}
-
-	.icon {
-		@include flex(center, center);
-		@include toRem(width, 42);
-		@include toRem(height, 42);
-		opacity: 0.5;
-		border-radius: 50px;
-		background-color: $blue-terciario;
-	}
-}
-
 .card {
 	@include toRem(height, 304);
 	@include toRem(border-radius, 12);

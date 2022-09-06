@@ -27,8 +27,9 @@ export class ConteudoPesquisaComponent implements OnInit {
 	ngOnInit() {
 		this.getListaPokemon();
 		this.getFiltrarTipoPokemon();
+		this.getNomeOuIdPokemonSearch();
 	}
-	
+
 	private getListaPokemon(): void {
 		this.pokemonService.getListaPokemon(9, this.offset).pipe(take(1)).subscribe({
 			next: (res: ListaPokemonsResponseInterface) => {
@@ -96,17 +97,49 @@ export class ConteudoPesquisaComponent implements OnInit {
 		this.getDadosPokemons();
 	}
 
+	private getNomeOuIdPokemonSearch(): void {
+		this.filtrosService.getFiltroNomeOuIdPokemon().subscribe({
+			next: (nomeOuId: string) => {
+				if (nomeOuId) {
+					this.trataDadosNomeOuIdPokemonSearch(nomeOuId);
+				}
+			}
+		})
+	}
+
+	private trataDadosNomeOuIdPokemonSearch(nomeOuId: string): void {
+		if(nomeOuId && nomeOuId !== ''){
+			this.loading = true;
+			this.dadosPokemon = [];
+			this.dadosLista.results = [];
+			const nomesPokemon = nomeOuId.split(/[ ,]+/);
+			nomesPokemon.forEach((nome: string) => {
+				this.dadosLista.results.push(
+					{
+						name: nome.toLowerCase(),
+						url: '',
+					}
+				)
+				this.dadosLista.count = nomesPokemon.length
+			});
+			this.getDadosPokemons();
+		}else {
+			this.getListaPokemon();
+		}
+		
+	}
+
 	public retornaDadosPokemonHtml(nome: string): void {
 		const dados: PokemonInterface = this.dadosPokemon.find((res) => res.name === nome)!;
 		this.dadosTela.push(dados);
 	}
 
 	public trataImagens(pokemon: PokemonInterface): string {
-		if(pokemon.sprites.other.dream_world.front_default) {
+		if (pokemon.sprites.other.dream_world.front_default) {
 			return pokemon.sprites.other.dream_world.front_default;
-		}else if(pokemon.sprites.other['official-artwork'].front_default){
+		} else if (pokemon.sprites.other['official-artwork'].front_default) {
 			return pokemon.sprites.other['official-artwork'].front_default;
-		}else {
+		} else {
 			return 'assets/pokeball2.png';
 		}
 	}

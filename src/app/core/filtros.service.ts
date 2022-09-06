@@ -17,11 +17,11 @@ export class FiltrosService {
 		this.filtroTipo.next(value);
 	}
 
-	public getFiltroPokemon(): Observable<string>{
+	public getFiltroNomeOuIdPokemon(): Observable<string>{
 		return this.filtroPokemon.asObservable();
 	}
 
-	public setFiltroPokemon(pokemon: string): void {
+	public setFiltroNomeOuIdPokemon(pokemon: string): void {
 		this.filtroPokemon.next(pokemon);
 	}
 }
