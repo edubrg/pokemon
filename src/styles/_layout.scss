@@ -275,6 +275,11 @@
 			margin-left: 15px;
 
 			&:hover {
+				img {
+					opacity: 1;
+					transition: 1s;
+				}
+
 				.label {
 					opacity: 1;
 					visibility: visible;
