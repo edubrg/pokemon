@@ -116,7 +116,7 @@ export class ConteudoPesquisaComponent implements OnInit {
 		nomesPokemon.forEach((nome: string) => {
 			this.dadosLista.results.push(
 				{
-					name: nome,
+					name: nome.toLowerCase(),
 					url: '',
 				}
 			)

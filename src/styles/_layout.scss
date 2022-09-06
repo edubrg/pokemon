@@ -214,6 +214,9 @@
 }
 
 .search {
+	.container {
+		padding-right: 0;
+	}
 	background: $grey;
 	padding: 100px 0;
 
@@ -225,6 +228,99 @@
 		h2 {
 			@include title($font-black);
 			@include toRem(max-width, 265);
+		}
+	}
+
+	.form {
+		@include flex($alignItems: center);
+		@include toRem(padding-right, 15);
+		position: relative;
+		.input {
+			@include flex(space-between, center);
+			@include toRem(max-width, 379.008);
+			background: $base-color;
+			width: 100%;
+			padding: 0.4375rem 0.4375rem 0.4375rem 1.0625rem;
+			border-radius: 50px;
+
+			&.valid {
+				.icon {
+					opacity: 1;
+					transition: 1s;
+				}
+			}
+
+			input {
+				@include title($font-color-input, 15, 500);
+				width: 100%;
+				border: 0;
+			}
+
+			input::placeholder {
+				@include title($font-color-input, 15, 500);
+			}
+
+			.icon {
+				@include flex(center, center);
+				@include toRem(width, 42);
+				@include toRem(height, 42);
+				opacity: 0.4;
+				transition: opacity 0.7s;
+				border-radius: 50px;
+				background-color: $blue-terciario;
+			}
+		}
+
+		.information-input {
+			margin-left: 15px;
+
+			&:hover {
+				.label {
+					opacity: 1;
+					visibility: visible;
+					transition: 1s;
+				}
+			}
+
+			img {
+				width: 20px;
+				height: 20px;
+				opacity: 0.6;
+				cursor: pointer;
+			}
+
+			.label {
+				@include position(absolute, $bottom: 110%, $right: 0);
+				box-shadow: 0px 10px 51px -5px rgb(183 189 193 / 30%);
+				width: 150px;
+				text-align: center;
+				background: $font-white;
+				padding: 10px;
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity 1s;
+				border-radius: 3px;
+
+				p {
+					@include toRem(font-size, 10);
+					position: relative;
+					z-index: 1;
+
+					& + p {
+						margin-top: 5px;
+					}
+				}
+
+				&::after {
+					@include position(absolute, $bottom: -3px, $right: 10px, $zIndex: 0);
+					@include toRem(width, 30);
+					@include toRem(height, 30);
+					content: "";
+					transform: rotate(45deg);
+					background-color: white;
+					opacity: 0.9;
+				}
+			}
 		}
 	}
 }

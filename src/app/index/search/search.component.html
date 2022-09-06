@@ -1,10 +1,20 @@
 <section class="search">
 	<div class="container">
 		<h2>Ache seu Pokémon</h2>
-		<form class="input" [formGroup]="form">
-			<input type="text" placeholder="Pesquise por nome ou id" formControlName="pesquisa">
-			<div class="icon" (click)="pesquisar()">
-				<img src="assets/lupa.svg" alt="lupa pesquisar">
+		<form class="form" [formGroup]="form">
+			<div class="input" [ngClass]="{ 'valid': form.valid }">
+				<input type="text" (keydown.enter)="pesquisar()" placeholder="Pesquise por nome ou id" formControlName="pesquisa">
+				<div class="icon" (click)="pesquisar()">
+					<img src="assets/lupa.svg" alt="lupa pesquisar">
+				</div>
+			</div>
+
+			<div class="information-input" (click)="clickInformacaoAdicional()">
+				<img src="assets/information.svg" alt="informação icone">
+				<span class="label">
+					<p>Pesquise mais de um pokemon, colocando a vígurla entre os nomes ou id.</p>
+					<p>Ex: Pikachu, Charizard, 18</p>
+				</span>
 			</div>
 		</form>
 	</div>
