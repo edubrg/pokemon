@@ -9,7 +9,7 @@ export class FiltrosService {
 	private filtroTipo = new BehaviorSubject<string>(undefined!);
 	private filtroPokemon = new BehaviorSubject<string>(undefined!);
 
-	public getFiltroTipo(): Observable<string>{
+	public getFiltroTipo(): Observable<string> {
 		return this.filtroTipo.asObservable();
 	}
 
@@ -17,11 +17,11 @@ export class FiltrosService {
 		this.filtroTipo.next(value);
 	}
 
-	public getFiltroNomeOuIdPokemon(): Observable<string>{
+	public getFiltroNomeOuIdPokemon(): Observable<string> {
 		return this.filtroPokemon.asObservable();
 	}
 
-	public setFiltroNomeOuIdPokemon(pokemon: string): void {
-		this.filtroPokemon.next(pokemon);
+	public setFiltroNomeOuIdPokemon(nomeOuIdPokemon: string): void {
+		this.filtroPokemon.next(nomeOuIdPokemon);
 	}
 }

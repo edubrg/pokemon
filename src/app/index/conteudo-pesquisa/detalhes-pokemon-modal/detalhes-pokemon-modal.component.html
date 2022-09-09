@@ -1,3 +1,66 @@
-<p>
-  detalhes-pokemon-modal works!
-</p>
+<div class="modal-pokemon" *ngIf="dadosPokemon">
+	<span class="fechar" (click)="dadosPokemon = undefined!">X</span>
+
+	<div class="retrato type-pokemon-background-img-{{dadosPokemon.types[0].type.name}}">
+		<img class="tipo" src="assets/tipos-pokemon-icon/{{dadosPokemon.types[0].type.name}}.svg"
+			alt="{{dadosPokemon.types[0].type.name}} icone">
+		<img class="pokemon" src="{{trataImagemPokemonClass.trataImagens(dadosPokemon)}}" alt="imagem-pokemon">
+	</div>
+
+	<div class="info">
+		<div class="titulo">
+			<div class="nomeId">
+				<h2>{{capitalizeFirstLetterClass.capitalize(dadosPokemon.name)}}</h2>
+				<p>#{{dadosPokemon.id}}</p>
+			</div>
+			<ul class="tipos-lista">
+				<li *ngFor="let tipos of dadosPokemon.types"
+					class="type-pokemon-color-{{tipos.type.name}} type-pokemon-background-{{tipos.type.name}}">
+					{{tipos.type.namePtbr && capitalizeFirstLetterClass.capitalize(tipos.type.namePtbr)}}</li>
+			</ul>
+		</div>
+
+		<ul class="fisico">
+			<li>
+				<h6>Altura</h6>
+				<p>{{dadosPokemon.height}}m</p>
+			</li>
+			<li>
+				<h6>Peso</h6>
+				<p>{{dadosPokemon.weight}}kg</p>
+			</li>
+			<li>
+				<h6>Habilidades</h6>
+				<p>{{dadosPokemon.abilities[0].ability.name}}</p>
+			</li>
+		</ul>
+
+		<div class="fraqueza" *ngIf="fraquezaStatus">
+			<h4>Fraqueza</h4>
+			<ul class="tipos-lista">
+				<li *ngFor="let tipoDamage of fraquezaStatus.damage_relations.double_damage_from"
+					class="type-pokemon-color-{{tipoDamage.name}} type-pokemon-background-{{tipoDamage.name}}">{{
+						tipoDamage.namePtbr && capitalizeFirstLetterClass.capitalize(tipoDamage.namePtbr)	
+					}}</li>
+			</ul>
+		</div>
+
+		<div class="status">
+			<h4>Status</h4>
+			<div class="item" *ngFor="let item of dadosPokemon.stats">
+				<span>{{item.stat.name}}</span>
+				<div class="status-bar">
+					<div class="bar" [ngStyle]="{'width': dadosStatusBar(item.base_stat)}"></div>
+					<ul class="divisor">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="overlay" *ngIf="dadosPokemon"></div>

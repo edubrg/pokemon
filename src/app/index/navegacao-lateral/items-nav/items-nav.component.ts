@@ -14,6 +14,7 @@ export class ItemsNavComponent {
 	constructor(private filtrosService: FiltrosService) { }
 
 	public filtrarTipoPokemon(value: string, index: number): void {
+		console.log(this.filtroInputAtivado);
 		this.filtroInputAtivado = false;
 		this.filtrosService.setFiltroTipo(value);
 		this.selecionado = index;

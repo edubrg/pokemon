@@ -5,18 +5,18 @@
 	</div>
 
 	<div class="conteudo">
-		<div class="card" *ngFor="let pokemon of dadosPokemon; index as i">
+		<div class="card" *ngFor="let pokemon of dadosPokemon; index as i" (click)="abrirModal(pokemon)">
 			<div *ngIf="pokemon.hasOwnProperty('types')">
 				<div class="imagem">
 					<span class="type-pokemon-background-{{pokemon.types[0].type.name}}"></span>
-					<img src="{{trataImagens(pokemon)}}" alt="{{pokemon.name}}">
+					<img src="{{trataImagemPokemonClass.trataImagens(pokemon)}}" alt="{{pokemon.name}}">
 				</div>
 
 				<div class="dados">
 					<p>#{{pokemon.id}}</p>
 
 					<div>
-						<h4>{{pokemon.name }}</h4>
+						<h4>{{capitalizeFirstLetterClass.capitalize(pokemon.name)}}</h4>
 						<img src="assets/tipos-pokemon-icon/{{pokemon.types[0].type.name}}.svg" alt="{{pokemon.types[0].type.name}}">
 					</div>
 				</div>
@@ -24,6 +24,8 @@
 		</div>
 	</div>
 </section>
+
+<app-detalhes-pokemon-modal [dadosPokemon]="pokemonSelecionadoModal"></app-detalhes-pokemon-modal>
 
 <app-loading [loading]="loading"></app-loading>
 

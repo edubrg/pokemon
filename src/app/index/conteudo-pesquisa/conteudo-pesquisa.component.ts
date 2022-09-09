@@ -1,3 +1,5 @@
+import { CapitalizeFirstLetterClass } from './../../model/class/capitalizeFirstLetterClass';
+import { TrataImagemPokemonClass } from './../../model/class/trataImagemPokemonClass';
 import { FiltrosService } from './../../core/filtros.service';
 import { PokemonInterface } from './../../model/interface/pokemon/pokemonInterface';
 import { PokemonService } from './../../core/pokemonService.service';
@@ -16,6 +18,7 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 	public dadosLista!: ListaPokemonsResponseInterface;
 	public dadosPokemon: Array<PokemonInterface> = [];
 	public dadosTela: PokemonInterface[] = [];
+	public pokemonSelecionadoModal!: PokemonInterface;
 	public loading: boolean = false;
 
 	private offset: number = 9;
@@ -24,7 +27,9 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 	constructor(
 		private pokemonService: PokemonService,
 		private filtrosService: FiltrosService,
-		private tiposPokemonService: TiposPokemonService
+		private tiposPokemonService: TiposPokemonService,
+		public trataImagemPokemonClass: TrataImagemPokemonClass,
+		public capitalizeFirstLetterClass: CapitalizeFirstLetterClass
 	) { }
 
 	ngOnInit() {
@@ -52,7 +57,8 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 
 	private getDadosPokemons(): void {
 		this.dadosLista.results.forEach((pokemon: ResultsListaPokemonsInterface, index: number) => {
-			this.pokemonService.getPokemon(pokemon.name).pipe(take(1)).subscribe({
+			this.insereIdResultsListaPokemonInterface(pokemon);
+			this.pokemonService.getPokemon(pokemon.id > 0 ? pokemon.id.toString() : pokemon.name).pipe(take(1)).subscribe({
 				next: (pok: PokemonInterface) => {
 					this.dadosPokemon.push(pok);
 				},
@@ -67,6 +73,13 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 				}
 			})
 		});
+	}
+
+	private insereIdResultsListaPokemonInterface(pokemon: ResultsListaPokemonsInterface): void {
+		if (!pokemon.hasOwnProperty('id')) {
+			const urlSplit = pokemon.url.split('/');
+			pokemon.id = Number(urlSplit[urlSplit.length - 2]);
+		}
 	}
 
 	private getFiltrarTipoPokemon(): void {
@@ -110,7 +123,7 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 	}
 
 	private getNomeOuIdPokemonSearch(): void {
-	    this.unsubscribers.push(this.filtrosService.getFiltroNomeOuIdPokemon().subscribe({
+		this.unsubscribers.push(this.filtrosService.getFiltroNomeOuIdPokemon().subscribe({
 			next: (nomeOuId: string) => {
 				if (nomeOuId) {
 					this.filtroNomeOuIdAtivado.emit(true);
@@ -129,6 +142,7 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 			nomesPokemon.forEach((nome: string) => {
 				this.dadosLista.results.push(
 					{
+						id: 0,
 						name: nome.toLowerCase(),
 						url: '',
 					}
@@ -155,6 +169,10 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 		} else {
 			return 'assets/pokeball2.png';
 		}
+	}
+
+	public abrirModal(dadosPokemon: PokemonInterface): void {
+		this.pokemonSelecionadoModal = dadosPokemon;
 	}
 
 	public erroFiltroRecarregar(event: boolean) {
