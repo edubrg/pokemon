@@ -4,6 +4,23 @@
 			h1 {
 				@include toRem(font-size, 48);
 			}
+
+			.pokeballs {
+				top: 25px;
+			}
+		}
+	}
+
+	.search {
+		padding: 130px 0 50px;
+		> div {
+			@include flex($flexDirection: column);
+
+			h2 {
+				@include toRem(margin-bottom, 40);
+				font-weight: 600;
+				max-width: 100%;
+			}
 		}
 	}
 }
@@ -16,12 +33,10 @@
 			}
 
 			.pokeballs {
-				top: 40px
+				top: 40px;
 			}
 		}
 	}
-
-
 }
 
 @media (max-width: 620px) {
@@ -31,7 +46,7 @@
 				@include toRem(font-size, 27);
 			}
 		}
-		
+
 		.pokeballs {
 			.pokeball {
 				width: 700px;
@@ -51,7 +66,7 @@
 		}
 
 		.paginacao {
-			@include position(absolute, $bottom: 20px, $right: 20px)
+			@include position(absolute, $bottom: 20px, $right: 20px);
 		}
 	}
 }
@@ -62,7 +77,6 @@
 	}
 
 	#banner {
-		
 		.explorar {
 			display: none;
 		}
@@ -77,18 +91,18 @@
 	#banner {
 		.descricao {
 			.pokeballs {
-				top: -27px
+				top: -27px;
 			}
 			.pokeballs {
 				.pokeball {
 					width: 600px;
-	
+
 					&.pokeball-blue {
 						top: -5px;
 						left: 52.5%;
 					}
 				}
 			}
-		}	
+		}
 	}
 }
