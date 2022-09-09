@@ -8,11 +8,13 @@ import { ListaPokemonsResponseInterface } from 'src/app/model/interface/listaPok
 	selector: 'app-navegacao-lateral',
 	templateUrl: './navegacao-lateral.component.html',
 })
+
 export class NavegacaoLateralComponent implements OnInit {
 	@Input() filtroLateralAtivado: boolean = true;
 
 	public labelsInterface: LabelsInterface = Labels
 	public tiposPokemon!: ListaPokemonsResponseInterface;
+	
 	constructor(private tiposPokemonService: TiposPokemonService) { }
 
 	ngOnInit() {

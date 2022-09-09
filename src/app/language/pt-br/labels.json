@@ -18,5 +18,13 @@
 		"dragon": "Dragão",
 		"dark": "Sombra",
 		"fairy": "Fada"
+	},
+	"statsPokemon": {
+		"hp": "HP",
+		"attack": "Ataque",
+		"defense": "Defesa",
+		"special-attack": "Sp. Ataque",
+		"special-defense": "Sp. Defesa",
+		"speed": "Rapidez"
 	}
 }

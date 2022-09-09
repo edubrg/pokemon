@@ -1,5 +1,5 @@
 export interface LabelsInterface {
-    typePokemon: {
+	typePokemon: {
 		normal: string,
 		fighting: string,
 		flying: string,
@@ -17,6 +17,14 @@ export interface LabelsInterface {
 		ice: string,
 		dragon: string,
 		dark: string,
-		fairy: string,	
-    }
+		fairy: string,
+	},
+	statsPokemon: {
+		hp: string,
+		attack: string,
+		defense: string,
+		'special-attack': string,
+		'special-defense': string,
+		speed: string
+	}
 }
