@@ -1,3 +1,41 @@
+header {
+	@include flex(space-between, center);
+	@include position(absolute, $top: 35px, $left: 50%, $zIndex: 9999);
+	width: 97%;
+	background: transparent;
+	transform: translate(-50%, 0);
+
+	a {
+		@include toRem(font-size, 13);
+		color: $base-color;
+	}
+}
+
+footer {
+	background-size: cover;
+	padding: 4.1875rem 0;
+	.container {
+		@include flex(space-between, center);
+
+		> div {
+			color: $font-white;
+			h2 {
+				@include title($font-white, 18, 600);
+				@include toRem(margin-bottom, 10);
+			}
+
+			p {
+				@include title($font-white, 14, 500);
+				opacity: 0.8;
+			}
+		}
+
+		> p {
+			@include title($font-white, 16, 500);
+		}
+	}
+}
+
 #banner {
 	@include toRem(height, 706);
 	max-width: 100vw;
