@@ -21,7 +21,7 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 	public pokemonSelecionadoModal!: PokemonInterface;
 	public loading: boolean = false;
 
-	private offset: number = 9;
+	private offset: number = 0;
 	private unsubscribers: Subscription[] = [];
 
 	constructor(
@@ -42,14 +42,14 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 		this.unsubscribers.forEach(subs => subs.unsubscribe);
 	}
 
-	private getListaPokemon(): void {
-		this.loading = true;
+	private getListaPokemon(loading: boolean = true): void {
+		this.loading = loading;
 		this.pokemonService.getListaPokemon(9, this.offset).pipe(take(1)).subscribe({
 			next: (res: ListaPokemonsResponseInterface) => {
 				this.dadosLista = res;
 			},
 			complete: () => {
-				this.offset += 9
+				this.offset += 10
 				this.getDadosPokemons();
 			}
 		})
@@ -154,6 +154,10 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 			this.getListaPokemon();
 		}
 
+	}
+
+	public carregarMaisPokemons(): void {
+		this.getListaPokemon(false);
 	}
 
 	public retornaDadosPokemonHtml(nome: string): void {

@@ -14,6 +14,40 @@
 	}
 }
 
+button {
+	cursor: pointer;
+	@include toRem(max-width, 196);
+	@include toRem(line-height, 45);
+	@include title($font-color-button, 14, 600);
+	letter-spacing: -0.01em;
+	width: 100%;
+	border-radius: 6px;
+	background-color: $blue-background-button;
+	display: inline-block;
+	border: none;
+	margin: 0;
+	text-decoration: none;
+	text-align: center;
+	transition: background 250ms ease-in-out, transform 0.3s ease;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+button:hover {
+	background: #0053ba;
+	color: $font-color-white;
+}
+
+button:focus {
+	outline: 1 solid transparent;
+	// outline-offset: -4px;
+}
+
+button:active {
+	transform: scale(0.99);
+}
+
+
 .container {
 	@include toRem(max-width, 1221);
 	margin: 0 auto;
