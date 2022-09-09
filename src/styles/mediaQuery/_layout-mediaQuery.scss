@@ -1,14 +1,94 @@
 @media (max-width: 945px) {
-	html {
-		font-size: 14px;
+	#banner {
+		.descricao {
+			h1 {
+				@include toRem(font-size, 48);
+			}
+		}
 	}
 }
 
-@media (max-width: 850px) {
+@media (max-width: 870px) {
+	#banner {
+		.descricao {
+			h1 {
+				@include toRem(font-size, 34);
+			}
+
+			.pokeballs {
+				top: 40px
+			}
+		}
+	}
+
+
 }
 
-@media (max-width: 400px) {
+@media (max-width: 620px) {
+	#banner {
+		.descricao {
+			h1 {
+				@include toRem(font-size, 27);
+			}
+		}
+		
+		.pokeballs {
+			.pokeball {
+				width: 700px;
+			}
+		}
+	}
+}
+
+@media (max-width: 500px) {
 	header {
 		@include flex(center, $flexDirection: column);
+	}
+
+	#banner {
+		.explorar {
+			display: none;
+		}
+
+		.paginacao {
+			@include position(absolute, $bottom: 20px, $right: 20px)
+		}
+	}
+}
+
+@media (max-width: 350px) {
+	header {
+		@include flex(center, $flexDirection: column);
+	}
+
+	#banner {
+		
+		.explorar {
+			display: none;
+		}
+
+		.paginacao {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: 280px) {
+	#banner {
+		.descricao {
+			.pokeballs {
+				top: -27px
+			}
+			.pokeballs {
+				.pokeball {
+					width: 600px;
+	
+					&.pokeball-blue {
+						top: -5px;
+						left: 52.5%;
+					}
+				}
+			}
+		}	
 	}
 }

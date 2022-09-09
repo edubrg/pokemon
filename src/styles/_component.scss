@@ -1,3 +1,9 @@
+body {
+	font: 16px "Inter", sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
 @each $name, $rgb, $color in $backgrounds-colors-type-pokemons {
 	.type-pokemon-background-#{$name} {
 		background-color: $rgb;
@@ -46,7 +52,6 @@ button:focus {
 button:active {
 	transform: scale(0.99);
 }
-
 
 .container {
 	@include toRem(max-width, 1221);
@@ -170,7 +175,7 @@ button:active {
 		width: 100%;
 
 		.tipo {
-			@include position(absolute, $top: .8125rem, $right: .9375rem);
+			@include position(absolute, $top: 0.8125rem, $right: 0.9375rem);
 			background-color: $base-color;
 			padding: 10px;
 			border-radius: 100%;
@@ -213,7 +218,7 @@ button:active {
 
 				h2 {
 					@include title($font-black, 28, 600);
-					margin-right: .5rem
+					margin-right: 0.5rem;
 				}
 
 				p {
@@ -235,7 +240,6 @@ button:active {
 				p {
 					@include title($font-black, 14, 600);
 				}
-
 			}
 		}
 
