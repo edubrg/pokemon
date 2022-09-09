@@ -3,7 +3,9 @@
 @import './_reset.scss';
 @import './_base.scss';
 @import './_component.scss';
+@import './mediaQuery/component-mediaQuery';
 @import './_layout.scss';
+@import './mediaQuery/layout-mediaQuery';
 
 body {
     font: 16px "Inter", sans-serif;
