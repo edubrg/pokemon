@@ -164,6 +164,7 @@
 						@include toRem(font-size, 10);
 						@include toRem(margin-top, 8);
 						opacity: 0.7;
+						display: block;
 					}
 				}
 			}
