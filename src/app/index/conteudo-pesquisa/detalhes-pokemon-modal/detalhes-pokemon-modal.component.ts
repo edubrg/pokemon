@@ -71,4 +71,9 @@ export class DetalhesPokemonModalComponent implements OnChanges {
 	public dadosStatusBar(status: number): string {
 		return (status > 100 ? 100 : status) + '%';
 	}
+
+	public fecharModal(): void {
+		document.getElementsByTagName("html")[0].style.overflowY = 'scroll';
+		this.dadosPokemon = undefined!
+	}
 }

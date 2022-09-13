@@ -177,6 +177,7 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 
 	public abrirModal(dadosPokemon: PokemonInterface): void {
 		this.pokemonSelecionadoModal = dadosPokemon;
+		document.getElementsByTagName("html")[0].style.overflowY = 'hidden';
 	}
 
 	public erroFiltroRecarregar(event: boolean) {

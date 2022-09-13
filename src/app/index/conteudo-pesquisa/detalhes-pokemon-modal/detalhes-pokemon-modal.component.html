@@ -1,5 +1,5 @@
 <div class="modal-pokemon" *ngIf="dadosPokemon">
-	<span class="fechar" (click)="dadosPokemon = undefined!">X</span>
+	<span class="fechar" (click)="fecharModal()">X</span>
 
 	<div class="retrato type-pokemon-background-img-{{dadosPokemon.types[0].type.name}}">
 		<img class="tipo" src="assets/tipos-pokemon-icon/{{dadosPokemon.types[0].type.name}}.svg"
@@ -63,4 +63,4 @@
 	</div>
 </div>
 
-<div class="overlay" *ngIf="dadosPokemon"></div>
+<div class="overlay" *ngIf="dadosPokemon" (click)="fecharModal()"></div>
