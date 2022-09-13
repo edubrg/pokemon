@@ -76,42 +76,38 @@ footer {
 			@include toRem(font-size, 18);
 			font-weight: 500;
 		}
+	}
+
+	.imagens {
+		@include position(relative, 130px, $zIndex: 1);
+		animation-name: flutuar;
+		animation-direction: normal;
+		animation-duration: 4s;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease;
+		animation-direction: alternate;
+		@keyframes flutuar {
+			0% {
+				transform: translate(0, 90px);
+			}
+			100% {
+				transform: translate(0, 70px);
+			}
+		}
+
+		img {
+			margin: 0 auto;
+			display: block;
+		}
 
 		.pokeballs {
-			@include position(relative, 0, $zIndex: 1);
-			animation-name: flutuar;
-			animation-direction: normal;
-			animation-duration: 4s;
-			animation-iteration-count: infinite;
-			animation-timing-function: ease;
-			animation-direction: alternate;
-
-			@keyframes flutuar {
-				0% {
-					transform: translate(0, 90px);
-				}
-				100% {
-					transform: translate(0, 70px);
-				}
+			@include position(relative);
+			overflow: hidden;
+			.pokeball-red {
 			}
 
-			img {
-				margin: 0 auto;
-				display: block;
-			}
-
-			.pokeball {
-				@include position(absolute, 0, $left: 50%);
-				transform: translate(-50%, 0);
-
-				&.pokeball-red {
-					top: 43px
-				}
-
-				&.pokeball-blue {
-					top: -20px;
-					left: 50.7%;
-				}
+			.pokeball-blue {
+				@include position(absolute, $bottom: 13px, $left: 50%, $leftNegativo: -49%);
 			}
 		}
 	}
@@ -165,23 +161,25 @@ footer {
 			h1 {
 				&.title-red {
 					opacity: 1;
-					transition: 0.5s;
+					transition: 0.7s;
 				}
 
 				&.title-blue {
 					opacity: 0;
-					transition: 0.5s;
+					transition: 0.7s;
 				}
 			}
+		}
 
+		.imagens {
 			.pokeballs {
 				.pokeball-red {
 					opacity: 1;
-					transition: 0.5s;
+					transition: 0.7s;
 				}
 				.pokeball-blue {
 					opacity: 0;
-					transition: 0.5s;
+					transition: 0.7s;
 				}
 			}
 		}
@@ -219,26 +217,29 @@ footer {
 			h1 {
 				&.title-red {
 					opacity: 0;
-					transition: 0.5s;
+					transition: 0.7s;
 				}
 
 				&.title-blue {
 					opacity: 1;
-					transition: 0.5s;
-				}
-			}
-
-			.pokeballs {
-				.pokeball-red {
-					opacity: 0;
-					transition: 0.5s;
-				}
-				.pokeball-blue {
-					opacity: 1;
-					transition: 0.5s;
+					transition: 0.7s;
 				}
 			}
 		}
+
+		.imagens {
+			.pokeballs {
+				.pokeball-red {
+					opacity: 0;
+					transition: 0.7s;
+				}
+				.pokeball-blue {
+					opacity: 1;
+					transition: 0.7s;
+				}
+			}
+		}
+
 		.explorar {
 			div {
 				background: $blue-background-rgb03;
@@ -395,7 +396,7 @@ footer {
 		@include toRem(padding-bottom, 100);
 		@include toRem(max-width, 239);
 		width: 100%;
-		border-right: 0.5px solid rgb(128, 128, 128, 0.1);
+		border-right: 0.5px solid $grey-light;
 
 		.item {
 			@include flex($alignItems: center);
@@ -411,7 +412,7 @@ footer {
 			}
 
 			&.bold-item {
-				transition: filter opacity 0.5s;
+				transition: opacity 0.5s;
 				opacity: 1;
 				filter: grayscale(0);
 			}
@@ -462,10 +463,11 @@ footer {
 				grid-gap: 3.2rem;
 			}
 		}
+	}
 
-		button {
-			margin: 0 auto;
-		}
+	.carregar-pokemons {
+		@include position(relative, $left: 50%, $leftNegativo: -50%);
+		@include toRem(margin-top, 70)
 	}
 }
 

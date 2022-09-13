@@ -1,12 +1,25 @@
+@media (max-width: 1000px) {
+	header {
+		&.container {
+			padding: 0;
+		}
+	}
+}
+
 @media (max-width: 945px) {
 	#banner {
+		.container {
+			padding: 0;
+		}
 		.descricao {
 			h1 {
 				@include toRem(font-size, 48);
 			}
+		}
 
-			.pokeballs {
-				top: 25px;
+		.imagens {
+			.pokeball-red {
+				@include position(relative, $left: 50%, $leftNegativo: -50%);
 			}
 		}
 	}
@@ -23,6 +36,56 @@
 			}
 		}
 	}
+
+	.conteudo-index {
+		@include flex($flexDirection: column);
+
+		.navegacao-lateral {
+			@include toRem(padding-top, 10);
+			padding-bottom: 0;
+			max-width: none;
+			border-right: none;
+			border-bottom: 0.5px solid $grey-light;
+
+			nav {
+				app-items-nav {
+					@include flex($alignItems: baseline);
+					overflow-x: scroll;
+
+					&::-webkit-scrollbar {
+						height: 10px;
+					}
+
+					&::-webkit-scrollbar-track {
+						background: #ffffff;
+					}
+
+					&::-webkit-scrollbar-thumb {
+						background-color: $blue-background-rgb03;
+						border-radius: 10px;
+						border: 3px solid #ffffff;
+					}
+
+					.item {
+						@include toRem(margin-right, 50);
+						width: fit-content;
+
+						img {
+							@include toRem(margin-right, 5);
+							max-width: initial;
+							width: initial;
+						}
+					}
+				}
+			}
+		}
+
+		.conteudo-pesquisa {
+			section {
+				padding-left: 0;
+			}
+		}
+	}
 }
 
 @media (max-width: 870px) {
@@ -31,12 +94,21 @@
 			h1 {
 				@include toRem(font-size, 34);
 			}
+		}
+	}
 
-			.pokeballs {
-				top: 40px;
+	.conteudo-index {
+		.conteudo-pesquisa {
+			section {
+				.conteudo {
+					grid-template-columns: repeat(2, 1fr);
+				}
 			}
 		}
 	}
+}
+
+@media (max-width: 750px) {
 }
 
 @media (max-width: 620px) {
@@ -44,12 +116,6 @@
 		.descricao {
 			h1 {
 				@include toRem(font-size, 27);
-			}
-		}
-
-		.pokeballs {
-			.pokeball {
-				width: 700px;
 			}
 		}
 	}
@@ -66,7 +132,52 @@
 		}
 
 		.paginacao {
-			@include position(absolute, $bottom: 20px, $right: 20px);
+			display: none;
+		}
+	}
+
+	.search {
+
+		> div {
+			padding: 0;
+			h2 {
+				@include toRem(font-size, 28)
+			}
+	
+			.form {
+				@include flex($flexDirection: column);
+				padding: 0;
+
+				.input {
+					@include toRem(max-width, 295);
+				}
+
+				.information-input {
+					margin-left: 0;
+					img {
+						display: none;
+					}
+					.label {
+						display: none;
+					}
+					.label-mobile {
+						@include toRem(font-size, 10);
+						@include toRem(margin-top, 8);
+						opacity: 0.7;
+					}
+				}
+			}
+		}
+		
+	}
+
+	.conteudo-index {
+		.conteudo-pesquisa {
+			section {
+				.conteudo {
+					grid-template-columns: repeat(1, 1fr);
+				}
+			}
 		}
 	}
 }
@@ -90,19 +201,6 @@
 @media (max-width: 280px) {
 	#banner {
 		.descricao {
-			.pokeballs {
-				top: -27px;
-			}
-			.pokeballs {
-				.pokeball {
-					width: 600px;
-
-					&.pokeball-blue {
-						top: -5px;
-						left: 52.5%;
-					}
-				}
-			}
 		}
 	}
 }
