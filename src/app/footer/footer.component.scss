@@ -1,0 +1,26 @@
+@import "../../styles/base";
+
+footer {
+	background-size: cover;
+	padding: 4.1875rem 0;
+	.container	{
+		@include flex(space-between, center);
+
+		> div {
+			color: $font-white;
+			h2 {
+				@include title($font-white, 18, 600);
+				@include toRem(margin-bottom, 10);
+			}
+
+			p {
+				@include title($font-white, 14, 500);
+				opacity: 0.8;
+			}
+		}
+
+		> p {
+			@include title($font-white, 16, 500);
+		}
+	}
+}
