@@ -15,11 +15,14 @@ import { TiposPokemonService } from 'src/app/core/tiposPokemonService.service';
 export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 	@Output() filtroNomeOuIdAtivado = new EventEmitter<boolean>();
 
+
 	public dadosLista!: ListaPokemonsResponseInterface;
 	public dadosPokemon: Array<PokemonInterface> = [];
 	public dadosTela: PokemonInterface[] = [];
 	public pokemonSelecionadoModal!: PokemonInterface;
 	public loading: boolean = false;
+	public loadingButtonCarregarMais: boolean = false;
+	public filtrosAtivados: boolean = false;
 
 	private offset: number = 0;
 	private unsubscribers: Subscription[] = [];
@@ -63,12 +66,16 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 					this.dadosPokemon.push(pok);
 				},
 				error: () => {
-					this.dadosLista.count = 0;
-					this.loading = false;
+					if (this.dadosLista.results.length === index + 1) {
+						this.dadosLista.count = 0;
+						this.loading = false;
+						this.loadingButtonCarregarMais = false;
+					}
 				},
 				complete: () => {
 					if (this.dadosLista.results.length === index + 1) {
 						this.loading = false;
+						this.loadingButtonCarregarMais = false;
 					}
 				}
 			})
@@ -85,6 +92,7 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 	private getFiltrarTipoPokemon(): void {
 		this.unsubscribers.push(this.filtrosService.getFiltroTipo().subscribe({
 			next: (tipo: string) => {
+				if (tipo === 'all') { this.filtrosAtivados = false }
 				this.dadosPokemon = [];
 				this.loading = true;
 				this.verificaTipoDoFiltro(tipo);
@@ -108,6 +116,7 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 	private getTipoPokemon(tipo: string): void {
 		this.tiposPokemonService.getTiposPokemon(tipo).subscribe({
 			next: (res: ListaPokemonsResponseInterface) => {
+				this.filtrosAtivados = true;
 				this.dadosLista = res;
 				this.trataDadosTipoPokemonLista();
 			}
@@ -126,6 +135,7 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 		this.unsubscribers.push(this.filtrosService.getFiltroNomeOuIdPokemon().subscribe({
 			next: (nomeOuId: string) => {
 				if (nomeOuId) {
+					this.filtrosAtivados = true;
 					this.filtroNomeOuIdAtivado.emit(true);
 					this.trataDadosNomeOuIdPokemonSearch(nomeOuId);
 				}
@@ -153,11 +163,15 @@ export class ConteudoPesquisaComponent implements OnInit, OnDestroy {
 		} else {
 			this.getListaPokemon();
 		}
+	}
 
+	public modalFechado() {
+		this.pokemonSelecionadoModal = undefined!
 	}
 
 	public carregarMaisPokemons(): void {
 		this.getListaPokemon(false);
+		this.loadingButtonCarregarMais = true;
 	}
 
 	public retornaDadosPokemonHtml(nome: string): void {

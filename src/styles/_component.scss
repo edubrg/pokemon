@@ -37,21 +37,22 @@ button {
 	transition: background 250ms ease-in-out, transform 0.3s ease;
 	-webkit-appearance: none;
 	-moz-appearance: none;
+
+	&:hover {
+		background: #0053ba;
+		color: $font-color-white;
+	}
+	
+	&:focus {
+		outline: 1 solid transparent;
+	}
+	
+	&:active {
+		transform: scale(0.99);
+	}
 }
 
-button:hover {
-	background: #0053ba;
-	color: $font-color-white;
-}
 
-button:focus {
-	outline: 1 solid transparent;
-	// outline-offset: -4px;
-}
-
-button:active {
-	transform: scale(0.99);
-}
 
 .container {
 	@include toRem(max-width, 1221);
