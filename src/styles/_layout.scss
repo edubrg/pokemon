@@ -8,6 +8,11 @@ header {
 	a {
 		@include toRem(font-size, 13);
 		color: $base-color;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
 
@@ -17,7 +22,7 @@ footer {
 	.container {
 		@include flex(space-between, center);
 
-		> div {
+		.sobre-projeto {
 			color: $font-white;
 			h2 {
 				@include title($font-white, 18, 600);
@@ -30,8 +35,35 @@ footer {
 			}
 		}
 
-		> p {
-			@include title($font-white, 16, 500);
+		.sobre-mim {
+			a {
+				@include title($font-white, 16, 500);
+				text-decoration: none;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+
+			.sociais {
+				@include toRem(margin-top, 5);
+				@include flex(center, center);
+				text-align: center;
+
+				a {
+					@include toRem(max-width, 30);
+					display: block;
+					&:first-child {
+						@include toRem(margin-right, 10);
+					}
+
+					img {
+						cursor: pointer;
+						width: 100%;
+						
+					}
+				}
+				
+			}
 		}
 	}
 }
@@ -471,7 +503,27 @@ footer {
 
 	.carregar-pokemons {
 		@include position(relative, $left: 50%, $leftNegativo: -50%);
-		@include toRem(margin-top, 70)
+		@include toRem(margin-top, 70);
+		@include flex(center);
+		
+		&.loading-button {
+			&:hover {
+				background-color: $blue-background-button;
+			}
+
+			span {
+				display: none;
+			}
+
+			img {
+				display: block;
+			}
+		}	
+
+		img {
+			@include toRem(max-width, 30);
+			display: none;
+		}
 	}
 }
 

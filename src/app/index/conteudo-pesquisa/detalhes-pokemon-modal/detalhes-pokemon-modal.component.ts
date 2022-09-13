@@ -1,5 +1,5 @@
 import { ListaPokemonsResponseInterface, RelacaoDeDano } from 'src/app/model/interface/listaPokemonsResponseInterface';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CapitalizeFirstLetterClass } from './../../../model/class/capitalizeFirstLetterClass';
 import { TrataImagemPokemonClass } from './../../../model/class/trataImagemPokemonClass';
 import { TiposPokemonService } from './../../../core/tiposPokemonService.service';
@@ -14,6 +14,7 @@ import Labels from '../../../language/pt-br/labels.json';
 })
 export class DetalhesPokemonModalComponent implements OnChanges {
 	@Input() dadosPokemon!: PokemonInterface;
+	@Output() modalFechado = new EventEmitter<boolean>();
 	public fraquezaStatus!: RelacaoDeDano;
 
 	private labelsInterface: LabelsInterface = Labels
@@ -25,7 +26,7 @@ export class DetalhesPokemonModalComponent implements OnChanges {
 	) { }
 
 	ngOnChanges(changes: SimpleChanges): void {
-		if (!changes['dadosPokemon'].firstChange) {
+		if (!changes['dadosPokemon'].firstChange && this.dadosPokemon) {
 			const tipoId = this.dadosPokemon.types[0].type.url.split('/');
 			this.clickModal(Number(tipoId[tipoId.length - 2]));
 		}
@@ -75,5 +76,6 @@ export class DetalhesPokemonModalComponent implements OnChanges {
 	public fecharModal(): void {
 		document.getElementsByTagName("html")[0].style.overflowY = 'scroll';
 		this.dadosPokemon = undefined!
+		this.modalFechado.emit(true);
 	}
 }

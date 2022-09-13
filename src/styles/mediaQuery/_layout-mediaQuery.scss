@@ -137,13 +137,12 @@
 	}
 
 	.search {
-
 		> div {
 			padding: 0;
 			h2 {
-				@include toRem(font-size, 28)
+				@include toRem(font-size, 28);
 			}
-	
+
 			.form {
 				@include flex($flexDirection: column);
 				padding: 0;
@@ -169,7 +168,6 @@
 				}
 			}
 		}
-		
 	}
 
 	.conteudo-index {
@@ -178,6 +176,27 @@
 				.conteudo {
 					grid-template-columns: repeat(1, 1fr);
 				}
+			}
+		}
+	}
+
+	footer {
+		.container {
+			.sobre-projeto {
+				@include toRem(max-width, 200);
+			}
+		}
+	}
+}
+
+@media (max-width: 380px) {
+	footer {
+		.container {
+			@include flex($flexDirection: column);
+			text-align: center;
+
+			.sobre-projeto {
+				@include toRem(margin-bottom, 30);
 			}
 		}
 	}
