@@ -1,0 +1,308 @@
+@media (max-width: 1235px) {
+	.not-found {
+		.container {
+			img.code-not-found {
+				@include toRem(max-width, 900);
+			}
+
+			img.rocket {
+				@include toRem(max-width, 490);
+			}
+		}
+	}
+}
+
+@media (max-width: 1000px) {
+	header#cabecalho {
+		div {
+			padding: 0;
+		}
+	}
+}
+
+@media (max-width: 945px) {
+	#banner {
+		.container {
+			padding: 0;
+		}
+		.descricao {
+			h1 {
+				@include toRem(font-size, 48);
+			}
+		}
+
+		.imagens {
+			.pokeball-red {
+				@include position(relative, $left: 50%, $leftNegativo: -50%);
+			}
+		}
+	}
+
+	.search {
+		padding: 130px 0 50px;
+		> div {
+			@include flex($flexDirection: column);
+
+			h2 {
+				@include toRem(margin-bottom, 40);
+				font-weight: 600;
+				max-width: 100%;
+			}
+		}
+	}
+
+	.conteudo-index {
+		@include flex($flexDirection: column);
+
+		.navegacao-lateral {
+			@include toRem(padding-top, 10);
+			padding-bottom: 0;
+			max-width: none;
+			border-right: none;
+			border-bottom: 0.5px solid $grey-light;
+
+			nav {
+				app-items-nav {
+					@include flex($alignItems: baseline);
+					overflow-x: scroll;
+
+					&::-webkit-scrollbar {
+						height: 10px;
+					}
+
+					&::-webkit-scrollbar-track {
+						background: #ffffff;
+					}
+
+					&::-webkit-scrollbar-thumb {
+						background-color: $blue-background-rgb03;
+						border-radius: 10px;
+						border: 3px solid #ffffff;
+					}
+
+					.item {
+						@include toRem(margin-right, 50);
+						width: fit-content;
+
+						img {
+							@include toRem(margin-right, 5);
+							max-width: initial;
+							width: initial;
+						}
+					}
+				}
+			}
+		}
+
+		.conteudo-pesquisa {
+			section {
+				padding-left: 0;
+			}
+		}
+	}
+
+	.not-found {
+		.container {
+			img.code-not-found {
+				@include toRem(max-width, 700);
+			}
+
+			img.rocket {
+				@include toRem(max-width, 390);
+			}
+		}
+	}
+}
+
+@media (max-width: 870px) {
+	#banner {
+		.descricao {
+			h1 {
+				@include toRem(font-size, 34);
+			}
+		}
+	}
+
+	.conteudo-index {
+		.conteudo-pesquisa {
+			section {
+				.conteudo {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 750px) {
+}
+
+@media (max-width: 620px) {
+	#banner {
+		.descricao {
+			h1 {
+				@include toRem(font-size, 27);
+			}
+		}
+	}
+
+	.not-found {
+		.container {
+			img.rocket {
+				@include toRem(max-width, 330);
+			}
+
+			h6 {
+				@include toRem(margin-top, 100);
+			}
+		}
+	}
+}
+
+@media (max-width: 500px) {
+	header#cabecalho {
+		div {
+			@include flex(center, $flexDirection: column);
+		}
+	}
+
+	#banner {
+		.explorar {
+			display: none;
+		}
+
+		.paginacao {
+			display: none;
+		}
+	}
+
+	.search {
+		> div {
+			padding: 0;
+			h2 {
+				@include toRem(font-size, 28);
+			}
+
+			.form {
+				@include flex($flexDirection: column);
+				padding: 0;
+
+				.input {
+					@include toRem(max-width, 295);
+				}
+
+				.information-input {
+					margin-left: 0;
+					img {
+						display: none;
+					}
+					.label {
+						display: none;
+					}
+					.label-mobile {
+						@include toRem(font-size, 10);
+						@include toRem(margin-top, 8);
+						opacity: 0.7;
+						display: block;
+					}
+				}
+			}
+		}
+	}
+
+	.conteudo-index {
+		.conteudo-pesquisa {
+			section {
+				.conteudo {
+					grid-template-columns: repeat(1, 1fr);
+				}
+			}
+		}
+	}
+
+	footer {
+		padding: 4.1875rem 0;
+		.container {
+			.sobre-projeto {
+				@include toRem(max-width, 200);
+			}
+		}
+	}
+
+	.not-found {
+		padding: 8rem 0 0.625rem;
+		.container {
+			img.code-not-found {
+				@include toRem(max-width, 380);
+			}
+
+			img.rocket {
+				@include toRem(max-width, 220);
+				top: 73px;
+			}
+			h6 {
+				@include toRem(font-size, 25);
+				@include toRem(max-width, 219);
+				margin: 6.25rem auto 3.875rem;
+			}
+
+			button {
+				@include toRem(max-width, 140);
+				@include toRem(height, 40);
+				@include toRem(font-size, 17);
+			}
+		}
+	}
+}
+
+@media (max-width: 380px) {
+	footer {
+		.container {
+			@include flex($flexDirection: column);
+			text-align: center;
+
+			.sobre-projeto {
+				@include toRem(margin-bottom, 30);
+			}
+		}
+	}
+}
+
+@media (max-width: 350px) {
+
+	#banner {
+		.explorar {
+			display: none;
+		}
+
+		.paginacao {
+			display: none;
+		}
+	}
+
+	.not-found {
+		// padding: 3rem 0 3rem;
+
+		.container {
+			img.code-not-found {
+				// @include toRem(max-width, 300);
+			}
+
+			img.rocket {
+				@include toRem(max-width, 180);
+				top: 73px;
+			}
+
+			h6 {
+				@include toRem(margin-top, 80);
+			}
+		}
+	}
+}
+
+@media (max-width: 280px) {
+	#banner {
+		.descricao {
+		}
+	}
+}

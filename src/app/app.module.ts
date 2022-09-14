@@ -1,38 +1,23 @@
-import { TiposPokemonService } from './core/tiposPokemonService.service';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ConteudoPesquisaComponent } from './index/conteudo-pesquisa/conteudo-pesquisa.component';
-import { IndexComponent } from './index/index.component';
-import { ItemsNavComponent } from './index/navegacao-lateral/items-nav/items-nav.component';
-import { NavegacaoLateralComponent } from './index/navegacao-lateral/navegacao-lateral.component';
-import { SearchComponent } from './index/search/search.component';
-import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
+import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { ChangeBannerClass } from './model/class/changeBannerClass';
-import { HttpClientModule } from '@angular/common/http';
+import { IndexModule } from './index/index.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
-		IndexComponent,
-		MenuPrincipalComponent,
-		SearchComponent,
-		NavegacaoLateralComponent,
-		ConteudoPesquisaComponent,
-		ItemsNavComponent,
-		FooterComponent
+		HeaderComponent,
+		FooterComponent,
+		NotFoundComponent
 	],
 	imports: [
-		BrowserModule,
 		AppRoutingModule,
-		HttpClientModule,
+		IndexModule
 	],
-	providers: [
-		ChangeBannerClass,
-		TiposPokemonService
-	],
+	providers: [],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,15 +4,9 @@ export interface TiposPokemonInterface {
 			slot: number,
 			type: {
 				name: string,
+				namePtbr: string,
 				url: string
 			}
 		},
-		{
-			slot: 2,
-			type: {
-				name: string,
-				url: string
-			}
-		}
 	],
 }

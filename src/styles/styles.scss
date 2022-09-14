@@ -4,9 +4,5 @@
 @import './_base.scss';
 @import './_component.scss';
 @import './_layout.scss';
-
-body {
-    font: 16px "Inter", sans-serif;
-    font-weight: 400;
-    position: relative;
-}
+@import './mediaQuery/component-mediaQuery';
+@import './mediaQuery/layout-mediaQuery';
