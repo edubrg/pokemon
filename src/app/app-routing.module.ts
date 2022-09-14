@@ -5,6 +5,10 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
 	{
+		path: '',
+		component: IndexComponent
+	},
+	{
 		path: 'pokemon',
 		component: IndexComponent
 	},
