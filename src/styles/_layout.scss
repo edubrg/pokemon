@@ -1,17 +1,30 @@
-header {
-	@include flex(space-between, center);
-	@include position(absolute, $top: 35px, $left: 50%, $zIndex: 9999);
-	width: 97%;
-	background: transparent;
-	transform: translate(-50%, 0);
+header#cabecalho {
+	background: $red-footer-header;
+	padding: 15px 0;
 
-	a {
-		@include toRem(font-size, 13);
-		color: $base-color;
-		text-decoration: none;
+	div {
+		@include flex(space-between, center);
+	
+		a {
+			@include toRem(font-size, 13);
+			color: $base-color;
+			text-decoration: none;
+	
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+	
 
-		&:hover {
-			text-decoration: underline;
+	&.index {
+		background: transparent;
+		padding: 0;
+		div {
+			@include position(absolute, $top: 35px, $left: 50%, $zIndex: 9999);
+			width: 97%;
+			background: transparent;
+			transform: translate(-50%, 0);
 		}
 	}
 }
@@ -59,10 +72,8 @@ footer {
 					img {
 						cursor: pointer;
 						width: 100%;
-						
 					}
 				}
-				
 			}
 		}
 	}
@@ -504,8 +515,33 @@ footer {
 	.carregar-pokemons {
 		@include position(relative, $left: 50%, $leftNegativo: -50%);
 		@include toRem(margin-top, 70);
+		@include toRem(max-width, 196);
+		@include toRem(line-height, 45);
 		@include flex(center);
-		
+		@include title($font-color-button, 14, 600);
+		width: 100%;
+		border: none {
+			radius: 6px;
+		}
+		letter-spacing: -0.01em;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		transition: background 250ms ease-in-out, transform 0.3s ease;
+		cursor: pointer;
+
+		&:hover {
+			background: #0053ba;
+			color: $font-color-white;
+		}
+
+		&:focus {
+			outline: 1 solid transparent;
+		}
+
+		&:active {
+			transform: scale(0.99);
+		}
+
 		&.loading-button {
 			&:hover {
 				background-color: $blue-background-button;
@@ -518,7 +554,7 @@ footer {
 			img {
 				display: block;
 			}
-		}	
+		}
 
 		img {
 			@include toRem(max-width, 30);
@@ -548,6 +584,73 @@ footer {
 		strong {
 			color: $blue;
 			cursor: pointer;
+		}
+	}
+}
+
+.not-found {
+	@include position(relative);
+	background-color: $background-not-found;
+	padding: 6rem 0 5.625rem;
+	min-height: 65vh;
+
+	.container {
+		text-align: center;
+
+		img.code-not-found {
+			@include toRem(max-width, 1259);
+			width: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+
+		img.rocket {
+			@include toRem(max-width, 690);
+			@include position(absolute, 45px, $left: 50%, $leftNegativo: -50%);
+			display: block;
+		}
+
+		h6 {
+			@include title($red-footer-header, 48, 700);
+			@include toRem(margin-top, 114);
+			@include toRem(margin-bottom, 62);
+
+			text-align: center;
+			font-family: "Karla", sans-serif;
+
+			span {
+				color: black;
+			}
+		}
+
+		button {
+			@include toRem(max-width, 231);
+			@include toRem(height, 66);
+			@include toRem(padding-bottom, 10);
+			cursor: pointer;
+			width: 100%;
+			color: white;
+			font-weight: 700;
+			border: none {
+				radius: 11px;
+			}
+			box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
+			background: {
+				color: $red-footer-header;
+			}
+			transition: 0.1s;
+			font: {
+				family: "Karla";
+				size: 23px;
+			}
+
+			&:active {
+				transform: translateY(5px);
+				box: {
+					shadow: inset 0px -4px 0px rgba(0, 0, 0, 0.18);
+				}
+				transition: 0.1s;
+			}
 		}
 	}
 }
