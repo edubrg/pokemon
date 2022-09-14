@@ -5,8 +5,11 @@
 			<h1 class="title-red">Que pokemon é esse?</h1>
 			<h1 class="title-blue">Pegue todos eles!</h1>
 			<p>O guia perfeito para quem quer caçar Pokémons pelo mundo</p>
+		</div>
+
+		<div class="imagens">
+			<img src="assets/luzes.svg" alt="luzes-pokeball">
 			<div class="pokeballs">
-				<img src="assets/luzes.svg" alt="luzes-pokeball">
 				<img class="pokeball-red" src="assets/img-pokeball-red.png" alt="pokeball red">
 				<img class="pokeball-blue" src="assets/img-pokeball-blue.png" alt="pokeball blue">
 			</div>
@@ -30,7 +33,9 @@
 
 <section class="container">
 	<div class="conteudo-index">
-		<app-navegacao-lateral class="navegacao-lateral"></app-navegacao-lateral>
-		<app-conteudo-pesquisa class="conteudo-pesquisa"></app-conteudo-pesquisa>
+		<app-navegacao-lateral class="navegacao-lateral" [filtroLateralAtivado]="filtroNomeOuId">
+		</app-navegacao-lateral>
+		<app-conteudo-pesquisa class="conteudo-pesquisa" (filtroNomeOuIdAtivado)="filtroNomeOuIdAtivado($event)">
+		</app-conteudo-pesquisa>
 	</div>
 </section>

@@ -1,6 +1,18 @@
-@each $name, $rgb, $color in $backgrounds-colors-type-pokemons{
+body {
+	font: 16px "Inter", sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+@each $name, $rgb, $color in $backgrounds-colors-type-pokemons {
 	.type-pokemon-background-#{$name} {
 		background-color: $rgb;
+	}
+
+	@if ($name != "all") {
+		.type-pokemon-background-img-#{$name} {
+			background-image: url("../assets/bg-tipo-pokemon/bg-#{$name}.svg");
+		}
 	}
 
 	.type-pokemon-color-#{$name} {
@@ -8,45 +20,28 @@
 	}
 }
 
+
+
 .container {
 	@include toRem(max-width, 1221);
 	margin: 0 auto;
 	padding: 0 0.9375rem;
 }
 
-.input {
-	@include flex(space-between, center);
-	@include toRem(max-width, 379.008);
-	background: $base-color;
-	width: 100%;
-	padding: 0.4375rem 0.4375rem 0.4375rem 1.0625rem;
-	border-radius: 50px;
-
-	input {
-		@include title($font-color-input, 15, 500);
-		width: 100%;
-		border: 0;
-	}
-
-	input::placeholder {
-		@include title($font-color-input, 15, 500);
-	}
-
-	.icon {
-		@include flex(center, center);
-		@include toRem(width, 42);
-		@include toRem(height, 42);
-		opacity: 0.5;
-		border-radius: 50px;
-		background-color: $blue-terciario;
-	}
-}
-
 .card {
 	@include toRem(height, 304);
 	@include toRem(border-radius, 12);
+	position: relative;
+	bottom: 0;
 	background: $base-color;
 	box-shadow: 0px 10px 51px -5px rgb(183 189 193 / 30%);
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: 0px 12px 40px -5px rgb(90 96 100 / 30%);
+		bottom: 2px;
+		transition: 0.8ms;
+	}
 
 	.imagem {
 		@include toRem(width, 200);
@@ -108,3 +103,161 @@
 	transition: background 0.5s;
 }
 
+.loading {
+	@include position(relative, $left: 50%, $top: 150px);
+	transform: translate(-50%);
+	max-width: 500px;
+
+	img {
+		width: 100%;
+	}
+}
+
+.overlay {
+	@include position(fixed, 0, $left: 0, $zIndex: 9999);
+	width: 100vw;
+	height: 100vh;
+	background-color: $overlay-rgba;
+}
+
+.modal-pokemon {
+	@include toRem(max-width, 710);
+	@include toRem(height, 508);
+	@include toRem(border-radius, 16);
+	@include position(fixed, $top: 50%, $left: 50%, $leftNegativo: -50%, $topNegativo: -50%, $zIndex: 99999);
+	@include box-shadow(0px 10px 40px rgb(13 12 71 / 5%));
+	@include flex($flexWrap: nowrap);
+	background: $base-color;
+	width: 100%;
+
+	.fechar {
+		@include position(absolute, -8%, 0);
+		background: $base-color;
+		padding: 0.3125rem 0.625rem;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	.retrato {
+		@include toRem(max-width, 191);
+		@include position();
+		width: 100%;
+
+		.tipo {
+			@include position(absolute, $top: 0.8125rem, $right: 0.9375rem);
+			background-color: $base-color;
+			padding: 10px;
+			border-radius: 100%;
+		}
+
+		.pokemon {
+			@include toRem(max-width, 202);
+			@include position(absolute, $top: 50%, $left: 50%, $leftNegativo: -33%, $topNegativo: -50%);
+			width: 100%;
+		}
+	}
+
+	.info {
+		@include toRem(max-width, 519);
+		width: 100%;
+		padding: 2.1875rem 4.5rem 1.8125rem 4.625rem;
+
+		h4 {
+			@include title($font-color-subtitle, 13, 600);
+			@include toRem(margin-bottom, 16);
+		}
+
+		.tipos-lista {
+			@include flex($flexWrap: wrap);
+			margin-top: 7px;
+			li {
+				@include toRem(font-size, 13);
+				font-family: "Montserrat", sans-serif;
+				width: fit-content;
+				font-weight: 800;
+				padding: 5px 7px;
+				margin-right: 10px;
+			}
+		}
+
+		.titulo {
+			@include toRem(margin-bottom, 32);
+			.nomeId {
+				@include flex($alignItems: center);
+
+				h2 {
+					@include title($font-black, 28, 600);
+					margin-right: 0.5rem;
+				}
+
+				p {
+					@include title($font-color, 16);
+				}
+			}
+		}
+
+		.fisico {
+			@include flex(space-between, center);
+			@include toRem(margin-bottom, 32);
+
+			li {
+				h6 {
+					@include title($font-color, 13, 500);
+					@include toRem(margin-bottom, 4);
+				}
+
+				p {
+					@include title($font-black, 14, 600);
+				}
+			}
+		}
+
+		.fraqueza {
+			@include toRem(margin-bottom, 32);
+		}
+
+		.status {
+			.item {
+				@include flex($alignItems: center);
+				& + .item {
+					@include toRem(margin-top, 13);
+				}
+
+				span {
+					@include title($font-color, 12, 500);
+					@include toRem(width, 68);
+					@include toRem(margin-right, 22);
+				}
+
+				.status-bar {
+					@include toRem(max-width, 283);
+					@include position();
+					width: 100%;
+					height: 3px;
+					background-color: $grey;
+
+					.bar {
+						height: 100%;
+						background-color: $red;
+					}
+
+					ul {
+						@include position(absolute, 0, $left: 0);
+						@include flex(center, center);
+						width: 100%;
+						height: 100%;
+						li {
+							width: 4px;
+							height: 4px;
+							background: $base-color;
+
+							& + li {
+								@include toRem(margin-left, 54);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

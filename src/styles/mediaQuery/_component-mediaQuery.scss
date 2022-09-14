@@ -1,0 +1,49 @@
+@media (max-width: 750px) {
+	.modal-pokemon {
+		@include flex($flexDirection: column);
+		@include position(fixed, initial, $left: 0, $bottom: 0);
+		max-width: 100%;
+		height: 90vh;
+		transform: none;
+		border-radius: 0;
+		overflow-y: auto;
+
+		.fechar {
+			@include position(absolute, 0, 0, $zIndex: 1);
+			border-radius: 0 0 0 5px;
+			padding: .3125rem .9375rem;
+			font-weight: 600;
+		}
+
+		.retrato {
+			@include toRem(height, 160);
+			max-width: 100%;
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+			background-size: 100%;
+			
+			.tipo {
+				right: inherit;
+				left: 0.9375rem;
+			}
+
+			.pokemon {
+				@include position(relative,  $top: 30%, $left: 50%, $leftNegativo: -50%);
+				@include toRem(max-width, 130);
+			
+			}
+		}
+
+		.info {
+			max-width: 100%;
+			padding: 65px 50px 20px;
+			width: initial;
+
+			.tipos-lista {
+				li {
+					margin-bottom: 5px;
+				}
+			}
+		}
+	}
+}

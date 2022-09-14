@@ -1,25 +1,41 @@
 <section *ngIf="!loading">
 	<div class="title">
 		<img src="assets/icon-poke-red.svg" alt="pokeball red">
-		<h4>{{dadosLista.count}} Pokémons</h4>
+		<h4>{{dadosLista.count ? dadosLista.count : dadosPokemon.length}} Pokémons</h4>
 	</div>
 
 	<div class="conteudo">
-		<div class="card" *ngFor="let pokemons of dadosLista.results">
-			<div class="imagem">
-				<span class="type-pokemon-background-{{retornaDadosPokemonHtml(pokemons.name).types[0].type.name}}"></span>
-				<img src="{{retornaDadosPokemonHtml(pokemons.name).sprites.other.dream_world.front_default}}"
-					alt="Primeape">
-			</div>
+		<div class="card" *ngFor="let pokemon of dadosPokemon; index as i" (click)="abrirModal(pokemon)">
+			<div *ngIf="pokemon.hasOwnProperty('types')">
+				<div class="imagem">
+					<span class="type-pokemon-background-{{pokemon.types[0].type.name}}"></span>
+					<img src="{{trataImagemPokemonClass.trataImagens(pokemon)}}" alt="{{pokemon.name}}">
+				</div>
 
-			<div class="dados">
-				<p>#057</p>
+				<div class="dados">
+					<p>#{{pokemon.id}}</p>
 
-				<div>
-					<h4>{{pokemons.name}}</h4>
-					<img src="assets/tipos-pokemon-icon/{{retornaDadosPokemonHtml(pokemons.name).types[0].type.name}}.svg" alt="fighting">
+					<div>
+						<h4>{{capitalizeFirstLetterClass.capitalize(pokemon.name)}}</h4>
+						<img src="assets/tipos-pokemon-icon/{{pokemon.types[0].type.name}}.svg"
+							alt="{{pokemon.types[0].type.name}}">
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<span></span>
 	</div>
+
+	<button *ngIf="!filtrosAtivados" class="carregar-pokemons" (click)="carregarMaisPokemons()" [ngClass]="{ 'loading-button': loadingButtonCarregarMais}"> 
+		<span>Carregar mais Pokémons</span>
+		<img src="assets/loading-button.svg" alt="carregando...">
+	</button>
 </section>
+
+<app-detalhes-pokemon-modal [dadosPokemon]="pokemonSelecionadoModal" (modalFechado)="modalFechado()"></app-detalhes-pokemon-modal>
+
+<app-loading [loading]="loading"></app-loading>
+
+<app-erro-filtro *ngIf="!loading && dadosPokemon.length === 0" (recarregar)="erroFiltroRecarregar($event)">
+</app-erro-filtro>

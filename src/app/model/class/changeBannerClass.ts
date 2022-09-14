@@ -3,7 +3,6 @@ import { BannerAtualEnum } from "src/app/model/enum/bannerAtualEnum";
 
 @Injectable()
 export class ChangeBannerClass {
-	constructor() { }
 
 	public change(getElementById: string, bannerAtual: BannerAtualEnum): BannerAtualEnum {
 		let bannerHtml = document.getElementById(getElementById);

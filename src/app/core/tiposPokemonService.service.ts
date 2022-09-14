@@ -2,8 +2,7 @@ import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TiposPokemonResponseInterface } from '../model/interface/tiposPokemonResponse';
-
+import { ListaPokemonsResponseInterface } from '../model/interface/listaPokemonsResponseInterface';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,7 +14,7 @@ export class TiposPokemonService {
 		private http: HttpClient
 	) { }
 
-	public getTiposPokemon(): Observable<TiposPokemonResponseInterface> {
-		return this.http.get<TiposPokemonResponseInterface>(this.url)
+	public getTiposPokemon(tipo?: string): Observable<ListaPokemonsResponseInterface> {
+		return this.http.get<ListaPokemonsResponseInterface>(`${this.url}/${tipo ? tipo : ''}`)
 	}
 }
