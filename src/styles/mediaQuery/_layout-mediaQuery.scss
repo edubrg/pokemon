@@ -1,6 +1,20 @@
+@media (max-width: 1235px) {
+	.not-found {
+		.container {
+			img.code-not-found {
+				@include toRem(max-width, 900);
+			}
+
+			img.rocket {
+				@include toRem(max-width, 490);
+			}
+		}
+	}
+}
+
 @media (max-width: 1000px) {
-	header {
-		&.container {
+	header#cabecalho {
+		div {
 			padding: 0;
 		}
 	}
@@ -86,6 +100,18 @@
 			}
 		}
 	}
+
+	.not-found {
+		.container {
+			img.code-not-found {
+				@include toRem(max-width, 700);
+			}
+
+			img.rocket {
+				@include toRem(max-width, 390);
+			}
+		}
+	}
 }
 
 @media (max-width: 870px) {
@@ -119,11 +145,25 @@
 			}
 		}
 	}
+
+	.not-found {
+		.container {
+			img.rocket {
+				@include toRem(max-width, 330);
+			}
+
+			h6 {
+				@include toRem(margin-top, 100);
+			}
+		}
+	}
 }
 
 @media (max-width: 500px) {
-	header {
-		@include flex(center, $flexDirection: column);
+	header#cabecalho {
+		div {
+			@include flex(center, $flexDirection: column);
+		}
 	}
 
 	#banner {
@@ -181,9 +221,35 @@
 	}
 
 	footer {
+		padding: 4.1875rem 0;
 		.container {
 			.sobre-projeto {
 				@include toRem(max-width, 200);
+			}
+		}
+	}
+
+	.not-found {
+		padding: 8rem 0 0.625rem;
+		.container {
+			img.code-not-found {
+				@include toRem(max-width, 380);
+			}
+
+			img.rocket {
+				@include toRem(max-width, 220);
+				top: 73px;
+			}
+			h6 {
+				@include toRem(font-size, 25);
+				@include toRem(max-width, 219);
+				margin: 6.25rem auto 3.875rem;
+			}
+
+			button {
+				@include toRem(max-width, 140);
+				@include toRem(height, 40);
+				@include toRem(font-size, 17);
 			}
 		}
 	}
@@ -203,9 +269,6 @@
 }
 
 @media (max-width: 350px) {
-	header {
-		@include flex(center, $flexDirection: column);
-	}
 
 	#banner {
 		.explorar {
@@ -214,6 +277,25 @@
 
 		.paginacao {
 			display: none;
+		}
+	}
+
+	.not-found {
+		// padding: 3rem 0 3rem;
+
+		.container {
+			img.code-not-found {
+				// @include toRem(max-width, 300);
+			}
+
+			img.rocket {
+				@include toRem(max-width, 180);
+				top: 73px;
+			}
+
+			h6 {
+				@include toRem(margin-top, 80);
+			}
 		}
 	}
 }
