@@ -15,7 +15,7 @@
 # Futuras atualizações
 
 - Layout fluido;
-- Compare os pokemons;
+- Compare os pokémons;
 - Testes unitários 100%;
 
 # Feedback
