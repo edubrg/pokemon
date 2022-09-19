@@ -2,8 +2,10 @@
 	<span class="fechar" (click)="fecharModal()">X</span>
 
 	<div class="retrato type-pokemon-background-img-{{dadosPokemon.types[0].type.name}}">
-		<img class="tipo" src="assets/tipos-pokemon-icon/{{dadosPokemon.types[0].type.name}}.svg"
-			alt="{{dadosPokemon.types[0].type.name}} icone">
+		<div class="tipo">
+			<img src="assets/tipos-pokemon-icon/{{dadosPokemon.types[0].type.name}}.svg"
+				alt="{{dadosPokemon.types[0].type.name}} icone">
+		</div>
 		<img class="pokemon" src="{{trataImagemPokemonClass.trataImagens(dadosPokemon)}}" alt="imagem-pokemon">
 	</div>
 
@@ -40,7 +42,7 @@
 			<ul class="tipos-lista">
 				<li *ngFor="let tipoDamage of fraquezaStatus.damage_relations.double_damage_from"
 					class="type-pokemon-color-{{tipoDamage.name}} type-pokemon-background-{{tipoDamage.name}}">{{
-						tipoDamage.namePtbr && capitalizeFirstLetterClass.capitalize(tipoDamage.namePtbr)	
+					tipoDamage.namePtbr && capitalizeFirstLetterClass.capitalize(tipoDamage.namePtbr)
 					}}</li>
 			</ul>
 		</div>
