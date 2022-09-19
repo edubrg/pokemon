@@ -1,10 +1,10 @@
-# Pokemon - Beta
+# Pokémon - Beta
 
 <p align="center">
 <img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
 
-> Saiba tudo sobre as caracteristicas do seu pokemon, [**clicando aqui**](https://edubrg.github.io/pokemon/) 
+> Saiba tudo sobre as características do seu pokémon, [**clicando aqui**](https://edubrg.github.io/pokemon/) 
 
 # Ferramentas utilizadas
 
