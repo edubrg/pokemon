@@ -126,15 +126,24 @@
 	.conteudo-index {
 		.conteudo-pesquisa {
 			section {
+				.title {
+					@include toRem(margin-bottom, 35);
+					justify-content: center;
+				}
+
 				.conteudo {
 					grid-template-columns: repeat(2, 1fr);
 				}
 			}
 		}
 	}
-}
 
-@media (max-width: 750px) {
+	.erro-filtro {
+		@include toRem(height, 300);
+		> div {
+			top: 10%;
+		}
+	}
 }
 
 @media (max-width: 620px) {
@@ -157,6 +166,22 @@
 			}
 		}
 	}
+
+	.erro-filtro {
+		@include toRem(height, 300);
+		> div {
+			top: 10%;
+			img {
+				@include toRem(height, 112);
+				@include toRem(width, 112);
+				@include toRem(margin-right, 32);
+			}
+
+			div {
+				width: 150px;
+			}
+		}
+	}
 }
 
 @media (max-width: 500px) {
@@ -167,6 +192,14 @@
 	}
 
 	#banner {
+		.imagens {
+			top: 150px;
+			.pokeballs {
+				img {
+					max-width: 180%;
+				}
+			}
+		}
 		.explorar {
 			display: none;
 		}
@@ -269,7 +302,6 @@
 }
 
 @media (max-width: 350px) {
-
 	#banner {
 		.explorar {
 			display: none;
@@ -281,13 +313,7 @@
 	}
 
 	.not-found {
-		// padding: 3rem 0 3rem;
-
 		.container {
-			img.code-not-found {
-				// @include toRem(max-width, 300);
-			}
-
 			img.rocket {
 				@include toRem(max-width, 180);
 				top: 73px;
@@ -301,8 +327,5 @@
 }
 
 @media (max-width: 280px) {
-	#banner {
-		.descricao {
-		}
-	}
+	// Implementar Galaxy Fold
 }

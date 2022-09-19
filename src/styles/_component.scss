@@ -104,12 +104,18 @@ body {
 }
 
 .loading {
-	@include position(relative, $left: 50%, $top: 150px);
-	transform: translate(-50%);
-	max-width: 500px;
+	@include position(relative);
+	height: 500px;
+	width: 100%;
 
-	img {
-		width: 100%;
+	> div {
+		@include position(relative, $left: 50%, $top: 50%);
+		transform: translate(-50%, -50%);
+		max-width: 500px;
+	
+		img {
+			width: 100%;
+		}
 	}
 }
 
