@@ -20,8 +20,6 @@ body {
 	}
 }
 
-
-
 .container {
 	@include toRem(max-width, 1221);
 	margin: 0 auto;
@@ -104,12 +102,18 @@ body {
 }
 
 .loading {
-	@include position(relative, $left: 50%, $top: 150px);
-	transform: translate(-50%);
-	max-width: 500px;
+	@include position(relative);
+	height: 500px;
+	width: 100%;
 
-	img {
-		width: 100%;
+	> div {
+		@include position(relative, $left: 50%, $top: 50%);
+		transform: translate(-50%, -50%);
+		max-width: 500px;
+
+		img {
+			width: 100%;
+		}
 	}
 }
 
@@ -144,10 +148,15 @@ body {
 		width: 100%;
 
 		.tipo {
-			@include position(absolute, $top: 0.8125rem, $right: 0.9375rem);
+			@include position(relative, .625rem, $left: 9.625rem);
+			@include toRem(width, 30);
+			@include toRem(height, 30);
 			background-color: $base-color;
-			padding: 10px;
 			border-radius: 100%;
+			
+			> img {
+				@include position(absolute, $top: 50%, $left: 50%, $leftNegativo: -50%, $topNegativo: -50%);
+			}
 		}
 
 		.pokemon {
